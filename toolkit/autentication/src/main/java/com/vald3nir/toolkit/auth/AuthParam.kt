@@ -1,0 +1,6 @@
+package com.vald3nir.toolkit.auth
+
+const val AUTH_LIB_PARAM_GOOGLE_SERVER_CLIENT_ID = "AUTH_LIB_PARAM_GOOGLE_SERVER_CLIENT_ID"
+const val AUTH_LIB_PARAM_LOGIN_RESPONSE = "AUTH_LIB_PARAM_LOGIN_RESPONSE"
+
+enum class AuthLibLoginResponseType { SUCCESS, FAKE_USER }
