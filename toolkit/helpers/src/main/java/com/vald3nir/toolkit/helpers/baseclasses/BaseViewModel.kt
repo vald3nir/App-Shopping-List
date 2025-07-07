@@ -2,12 +2,14 @@ package com.vald3nir.toolkit.helpers.baseclasses
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.vald3nir.android.firebase.utils.notifyLog
 import com.vald3nir.toolkit.helpers.navigation.UiDestination
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
+import kotlin.onFailure
 
 abstract class BaseViewModel : ViewModel() {
 
@@ -35,7 +37,7 @@ abstract class BaseViewModel : ViewModel() {
                 updateViewState(BaseScreenState.Loading(true))
                 action.invoke()
             }.onFailure {
-                it.printStackTrace()
+                it.notifyLog()
                 updateViewState(BaseScreenState.Loading(false))
                 updateViewState(BaseScreenState.ShowMessage(it.message))
             }

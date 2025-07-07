@@ -3,6 +3,7 @@ package com.vald3nir.shoppinglist.presentation.features.boot
 import android.content.Context
 import androidx.lifecycle.viewModelScope
 import com.vald3nir.android.firebase.auth.FirebaseAuthenticator
+import com.vald3nir.android.firebase.utils.notifyLog
 import com.vald3nir.shoppinglist.presentation.features.shoppingList.startShoppingListActivity
 import com.vald3nir.shoppinglist.repository.ImportDataRepository
 import com.vald3nir.toolkit.helpers.baseclasses.BaseViewModel
@@ -21,7 +22,7 @@ internal class BootViewModel @Inject constructor(private val repository: ImportD
                     return@launch
                 }
                 downloadDatabase(context)
-            }
+            }.onFailure { it.notifyLog() }
         }
     }
 
@@ -39,7 +40,7 @@ internal class BootViewModel @Inject constructor(private val repository: ImportD
                 repository.importProductsFromLocal(context)
                 repository.importShoppingListFromLocal()
                 context.startShoppingListActivity()
-            }
+            }.onFailure { it.notifyLog() }
         }
     }
 }

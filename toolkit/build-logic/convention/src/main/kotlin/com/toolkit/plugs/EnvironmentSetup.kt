@@ -21,6 +21,7 @@ const val composeUiVersion = "1.8.0"
 // Core AndroidX
 const val activityComposeVersion = "1.7.2"
 const val activityVersion = "1.10.1"
+const val appCompat = "1.6.1"
 const val coreKtxVersion = "1.12.0"
 const val lifecycleVersion = "2.8.7"
 const val navigationComposeVersion = "2.8.8"
@@ -46,7 +47,15 @@ const val hiltNavigationCompose = "1.2.0"
 const val kotlinxSerialization = "1.8.0"
 const val gsonVersion = "2.11.0"
 
+// Firebase and Credentials
+const val firebaseBom = "33.16.0"
+const val credentialsVersion = "1.3.0"
+const val googleidCredentialsVersion = "1.1.1"
+const val googlePlayServiceGMSVersion = "20.7.0"
+
 // Testes
 const val junitVersion = "4.13.2"
 const val androidJunitVersion = "1.1.5"
 const val espressoCoreVersion = "3.5.1"
+
+

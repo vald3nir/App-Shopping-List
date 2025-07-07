@@ -1,6 +1,7 @@
 package com.vald3nir.shoppinglist.repository
 
 import android.content.Context
+import com.vald3nir.android.firebase.utils.notifyLog
 import com.vald3nir.shoppinglist.db.dao.ProductsDao
 import com.vald3nir.shoppinglist.db.dao.ShoppingListDao
 import com.vald3nir.shoppinglist.domain.mapper.toModel
@@ -10,19 +11,20 @@ import com.vald3nir.shoppinglist.repository.usecases.importShoppingListFromMock
 import javax.inject.Inject
 
 interface ImportDataRepository {
-    suspend fun importShoppingListFromServer(forceUpdate: Boolean = false)
+    suspend fun importShoppingListFromServer()
     suspend fun importShoppingListFromLocal()
-    suspend fun importProductsFromServer(context: Context, forceUpdate: Boolean = false)
+    suspend fun importProductsFromServer(context: Context)
     suspend fun importProductsFromLocal(context: Context)
 }
 
 class ImportDataRepositoryImpl @Inject constructor(private val shoppingListDao: ShoppingListDao, private val productsDao: ProductsDao) : ImportDataRepository {
 
-    override suspend fun importShoppingListFromServer(forceUpdate: Boolean) {
+    override suspend fun importShoppingListFromServer() {
         kotlin.runCatching {
-            if (forceUpdate || shoppingListDao.isEmpty()) {
-                FirebaseUseCase.importShoppingLists(shoppingListDao)
-            }
+            val response = FirebaseUseCase.importShoppingLists()
+            shoppingListDao.cleanAndInsert(response)
+        }.onFailure {
+            it.notifyLog()
         }
     }
 
@@ -30,14 +32,15 @@ class ImportDataRepositoryImpl @Inject constructor(private val shoppingListDao: 
         shoppingListDao.importShoppingListFromMock()
     }
 
-    override suspend fun importProductsFromServer(context: Context, forceUpdate: Boolean) {
-        if (forceUpdate || productsDao.isEmpty()) {
-            kotlin.runCatching {
-                FirebaseUseCase.importProducts(productsDao)
-            }.onFailure {
-                importProductsFromLocal(context)
-            }
+    override suspend fun importProductsFromServer(context: Context) {
+        runCatching {
+            val response = FirebaseUseCase.importProducts()
+            productsDao.clearAndInsert(response)
+        }.onFailure {
+            it.notifyLog()
+            importProductsFromLocal(context)
         }
+
     }
 
     override suspend fun importProductsFromLocal(context: Context) {

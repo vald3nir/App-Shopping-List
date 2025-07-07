@@ -10,6 +10,7 @@ import com.google.firebase.auth.FirebaseAuthWeakPasswordException
 import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
+import com.vald3nir.android.firebase.utils.notifyLog
 
 data class FirebaseUser(
     val id: String,
@@ -53,13 +54,13 @@ object FirebaseAuthenticator {
                 if (task.isSuccessful) {
                     onLoginSuccess()
                 } else {
-                    task.exception?.printStackTrace()
+                    task.exception?.notifyLog()
                     onLoginError(Exception("Erro ao realizar login, verifique suas credenciais"))
                 }
 
             }
         }.onFailure {
-            it.printStackTrace()
+            it.notifyLog()
             onLoginError(Exception("Erro ao realizar login, verifique suas credenciais"))
         }
     }
@@ -74,13 +75,13 @@ object FirebaseAuthenticator {
                 if (task.isSuccessful) {
                     onLoginSuccess()
                 } else {
-                    task.exception?.printStackTrace()
+                    task.exception?.notifyLog()
                     onLoginError(Exception("Erro ao realizar login, verifique suas credenciais"))
                 }
 
             }
         }.onFailure {
-            it.printStackTrace()
+            it.notifyLog()
             onLoginError(Exception("Erro ao realizar login, verifique suas credenciais"))
         }
     }

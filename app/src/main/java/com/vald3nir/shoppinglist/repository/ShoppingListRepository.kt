@@ -48,7 +48,7 @@ class ShoppingListRepositoryImpl @Inject constructor(private val dao: ShoppingLi
 
     override suspend fun saveShoppingList(dto: ShoppingListDTO) {
         dao.insertOrUpdateShoppingList(dto)
-        FirebaseUseCase.exportShoppingLists(dao)
+        exportShoppingLists()
     }
 
     override suspend fun cloneShoppingList(dto: ShoppingListDTO) {
@@ -57,22 +57,26 @@ class ShoppingListRepositoryImpl @Inject constructor(private val dao: ShoppingLi
 
     override suspend fun updateShoppingListTitle(shoppingListId: Long, newTitle: String) {
         dao.updateShoppingListTitle(shoppingListId, newTitle)
-        FirebaseUseCase.exportShoppingLists(dao)
+        exportShoppingLists()
     }
 
     override suspend fun updateItemShoppingList(item: ItemShoppingListDTO): ShoppingListDTO? {
         dao.insert(item.toModal())
-        FirebaseUseCase.exportShoppingLists(dao)
+        exportShoppingLists()
         return dao.loadShoppingList(item.shoppingListId)
     }
 
     override suspend fun deleteItemShoppingList(itemId: Long) {
         dao.deleteItemById(itemId)
-        FirebaseUseCase.exportShoppingLists(dao)
+        exportShoppingLists()
     }
 
     override suspend fun deleteShoppingList(id: Long) {
         dao.deleteShoppingListById(id)
-        FirebaseUseCase.exportShoppingLists(dao)
+        exportShoppingLists()
+    }
+
+    private suspend fun exportShoppingLists() {
+        FirebaseUseCase.exportShoppingLists(dao.loadAllListsWithItems())
     }
 }

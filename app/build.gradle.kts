@@ -42,7 +42,7 @@ android {
     namespace = "com.vald3nir.shoppinglist"
     defaultConfig {
         applicationId = namespace
-        versionCode = 3
+        versionCode = 5
         versionName = "2025.1.${versionCode}"
 
         setupSigningConfigs(

@@ -6,4 +6,6 @@ android {
     namespace = "com.vald3nir.toolkit.helpers"
 }
 
-dependencies {}
+dependencies {
+    implementation(project(":toolkit:firebase"))
+}

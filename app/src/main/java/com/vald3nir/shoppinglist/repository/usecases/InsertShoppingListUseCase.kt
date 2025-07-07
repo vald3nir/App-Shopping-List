@@ -19,7 +19,7 @@ private suspend fun ShoppingListDao.updateShoppingListModel(dto: ShoppingListDTO
     ) ?: ShoppingListModal(
         title = dto.title
     )
-    return insert(model)
+    return insertShoppingList(model)
 }
 
 private suspend fun ShoppingListDao.updateOrInsertItemShoppingList(dto: ShoppingListDTO) {
@@ -33,5 +33,5 @@ private suspend fun ShoppingListDao.updateOrInsertItemShoppingList(dto: Shopping
             isAdd = it.isAdd
         )
     }
-    insert(newItems)
+    insertItems(newItems)
 }

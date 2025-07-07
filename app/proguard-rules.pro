@@ -157,3 +157,60 @@
     <init>(...);
 }
 -keep class androidx.lifecycle.** { *; }
+
+# ===============================
+# Evitar ofuscação de classes DTO e Model
+# ===============================
+# Mantém todas as classes que terminam com DTO ou Model
+# (inclusive classes internas e campos públicos/privados)
+-keep class **.*DTO { *; }
+-keep class **.*Model { *; }
+
+# Se quiser evitar a renomeação também (além da remoção)
+-keepnames class **.*DTO
+-keepnames class **.*Model
+
+# Impede remoção de campos utilizados por reflexão (ex: Gson, Moshi, Firebase)
+-keepclassmembers class **.*DTO {
+    <fields>;
+}
+-keepclassmembers class **.*Model {
+    <fields>;
+}
+
+# Keep todas as entidades, DAOs e classes com anotações do Room
+-keepclassmembers class * {
+    @androidx.room.* <methods>;
+    @androidx.room.* <fields>;
+}
+
+# Mantenha as classes anotadas com @Entity, @Dao, @Database, @TypeConverter
+-keep @androidx.room.Entity class * { *; }
+-keep @androidx.room.Dao class * { *; }
+-keep @androidx.room.Database class * { *; }
+-keep @androidx.room.TypeConverter class * { *; }
+
+# Preserve todas as classes e seus membros usados por Room
+-keep class androidx.room.** { *; }
+-keepclassmembers class * {
+    @androidx.room.ColumnInfo <fields>;
+    @androidx.room.PrimaryKey <fields>;
+    @androidx.room.Relation <fields>;
+    @androidx.room.Ignore <fields>;
+}
+
+# Evita que o Room perca a visibilidade de classes usadas por reflexão
+-keepnames class * extends androidx.room.RoomDatabase
+-keepnames class * implements androidx.room.TypeConverter
+
+# Garante que o Room possa acessar os métodos de DAO
+-keepclassmembers class * {
+    @androidx.room.Query <methods>;
+    @androidx.room.Insert <methods>;
+    @androidx.room.Update <methods>;
+    @androidx.room.Delete <methods>;
+    @androidx.room.Transaction <methods>;
+}
+
+# Garante que as classes do Kotlin sejam mantidas (caso use Kotlin)
+-keepclassmembers class kotlin.Metadata { *; }

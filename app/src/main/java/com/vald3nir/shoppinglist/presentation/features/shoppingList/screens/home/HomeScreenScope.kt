@@ -2,6 +2,7 @@ package com.vald3nir.shoppinglist.presentation.features.shoppingList.screens.hom
 
 import android.content.Context
 import androidx.navigation.NavController
+import com.vald3nir.shoppinglist.presentation.features.boot.buildBootActivityIntent
 import com.vald3nir.shoppinglist.presentation.features.shoppingList.navigation.ShoppingListScreenRoute
 import com.vald3nir.toolkit.helpers.baseclasses.BaseScreenScope
 
@@ -24,11 +25,7 @@ data class HomeScreenScope(
         if (isUserLogged()) {
             viewModel.userLogout()
         }
-        redirectToAuthentication(context)
-    }
-
-    private fun redirectToAuthentication(context: Context) {
-//        context.startAuthActivity() valdenir
+        context.apply { startActivity(buildBootActivityIntent()) }
     }
 
     fun isUserLogged() = viewModel.isUserLogged()

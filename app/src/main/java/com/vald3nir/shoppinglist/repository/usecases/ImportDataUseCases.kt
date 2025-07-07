@@ -1,9 +1,10 @@
 package com.vald3nir.shoppinglist.repository.usecases
 
 import android.content.Context
+import com.vald3nir.android.firebase.utils.notifyLog
 import com.vald3nir.shoppinglist.db.dao.ShoppingListDao
 import com.vald3nir.shoppinglist.db.mock.MockShoppingListModel
-import com.vald3nir.shoppinglist.db.model.projections.ShoppingListWithItems
+import com.vald3nir.shoppinglist.db.model.projections.ShoppingListWithItemsModel
 import com.vald3nir.shoppinglist.domain.dto.ProductDTO
 
 fun Context.importProductsFromDataset(): List<ProductDTO> {
@@ -17,15 +18,15 @@ fun Context.importProductsFromDataset(): List<ProductDTO> {
                 }
             }
         }
-    }
+    }.onFailure { it.notifyLog() }
     return products
 }
 
 suspend fun ShoppingListDao.importShoppingListFromMock() {
-    val shoppingLists: List<ShoppingListWithItems> = arrayListOf(
-        ShoppingListWithItems(shoppingList = MockShoppingListModel.list1, items = MockShoppingListModel.items1),
-        ShoppingListWithItems(shoppingList = MockShoppingListModel.list2, items = MockShoppingListModel.items2),
-        ShoppingListWithItems(shoppingList = MockShoppingListModel.list3, items = MockShoppingListModel.items3),
+    val shoppingLists: List<ShoppingListWithItemsModel> = arrayListOf(
+        ShoppingListWithItemsModel(shoppingList = MockShoppingListModel.list1, items = MockShoppingListModel.items1),
+        ShoppingListWithItemsModel(shoppingList = MockShoppingListModel.list2, items = MockShoppingListModel.items2),
+        ShoppingListWithItemsModel(shoppingList = MockShoppingListModel.list3, items = MockShoppingListModel.items3),
     )
     this.cleanAndInsert(shoppingLists)
 }

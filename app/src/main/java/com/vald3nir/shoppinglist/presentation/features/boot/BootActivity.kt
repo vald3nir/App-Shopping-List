@@ -1,6 +1,8 @@
 package com.vald3nir.shoppinglist.presentation.features.boot
 
 import android.app.Activity
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.compose.setContent
@@ -23,13 +25,17 @@ internal class BootActivity : CustomActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            BootScreenContent()
+            BootScreenContent(this@BootActivity)
         }
     }
 }
 
+fun Context.buildBootActivityIntent() = Intent(this, BootActivity::class.java).apply {
+    flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+}
+
 @Composable
-private fun BootScreenContent() {
+private fun BootScreenContent(activity: Activity) {
     val context = LocalContext.current
     val viewModel = hiltViewModel<BootViewModel>()
 
@@ -39,7 +45,10 @@ private fun BootScreenContent() {
             when (response) {
                 AuthLibLoginResponseType.SUCCESS.name -> viewModel.downloadDatabase(context)
                 AuthLibLoginResponseType.FAKE_USER.name -> viewModel.useFakeData(context)
+                else -> activity.finish()
             }
+        } else {
+            activity.finish()
         }
     }
 

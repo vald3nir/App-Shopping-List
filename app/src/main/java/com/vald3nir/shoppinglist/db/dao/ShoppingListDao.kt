@@ -7,7 +7,7 @@ import androidx.room.Query
 import androidx.room.Transaction
 import com.vald3nir.shoppinglist.db.model.entities.ItemShoppingListModal
 import com.vald3nir.shoppinglist.db.model.entities.ShoppingListModal
-import com.vald3nir.shoppinglist.db.model.projections.ShoppingListWithItems
+import com.vald3nir.shoppinglist.db.model.projections.ShoppingListWithItemsModel
 import kotlinx.coroutines.flow.Flow
 
 @Dao
@@ -18,21 +18,22 @@ interface ShoppingListDao {
     // ========================================================================================
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insert(entity: ShoppingListModal): Long
+    suspend fun insertShoppingList(entity: ShoppingListModal): Long
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insert(entities: List<ItemShoppingListModal>): List<Long>
+    suspend fun insertItems(entities: List<ItemShoppingListModal>): List<Long>
+
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(entity: ItemShoppingListModal): Long
 
     @Transaction
-    suspend fun cleanAndInsert(models: List<ShoppingListWithItems>) {
+    suspend fun cleanAndInsert(models: List<ShoppingListWithItemsModel>) {
         deleteAllLists()
         deleteAllItems()
         models.forEach {
-            insert(it.shoppingList)
-            insert(it.items)
+            val shoppingListId = insertShoppingList(it.shoppingList)
+            insertItems(it.items.map { item -> item.copy(shoppingListId = shoppingListId) })
         }
     }
 
@@ -71,18 +72,18 @@ interface ShoppingListDao {
 
     @Transaction
     @Query("SELECT * FROM ${ShoppingListModal.TABLE_NAME} WHERE id = :shoppingListId")
-    fun selectShoppingListFlow(shoppingListId: Long?): Flow<ShoppingListWithItems?>
+    fun selectShoppingListFlow(shoppingListId: Long?): Flow<ShoppingListWithItemsModel?>
 
     @Query("SELECt * FROM ${ItemShoppingListModal.TABLE_NAME} WHERE id = :itemId")
     fun selectItemShoppingListFlow(itemId: Long?): Flow<ItemShoppingListModal?>
 
     @Transaction
     @Query("SELECT * FROM ${ShoppingListModal.TABLE_NAME} WHERE id = :shoppingListId")
-    suspend fun selectShoppingList(shoppingListId: Long?): ShoppingListWithItems?
+    suspend fun selectShoppingList(shoppingListId: Long?): ShoppingListWithItemsModel?
 
     @Transaction
     @Query("SELECT * FROM ${ShoppingListModal.TABLE_NAME}")
-    suspend fun loadAllListsWithItems(): List<ShoppingListWithItems?>
+    suspend fun loadAllListsWithItems(): List<ShoppingListWithItemsModel?>
 
     @Query("SELECT * FROM ${ShoppingListModal.TABLE_NAME} ORDER BY lastUpdated DESC")
     fun selectAllShoppingLists(): Flow<List<ShoppingListModal>>
