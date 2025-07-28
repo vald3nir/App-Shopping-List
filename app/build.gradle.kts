@@ -15,7 +15,7 @@ plugins {
 }
 
 // todo replace for your .env file path
-val envFilePath = "D:\\Documents\\GitHub\\Projetos\\ShoopingListProject\\BackofficeShoppingList\\shopping_list.env"
+val envFilePath = "D:\\Documents\\GitHub\\Documents\\environments\\shopping-list.env"
 val pathKeyStore = getEnvParameter(envFilePath = envFilePath, key = "KEY_STORE_PATH")
 val keyAlias = getEnvParameter(envFilePath = envFilePath, key = "KEY_STORE_ALIAS")
 val keyPassword = getEnvParameter(envFilePath = envFilePath, key = "KEY_STORE_PASSWORD")
@@ -42,7 +42,7 @@ android {
     namespace = "com.vald3nir.shoppinglist"
     defaultConfig {
         applicationId = namespace
-        versionCode = 5
+        versionCode = 6
         versionName = "2025.1.${versionCode}"
 
         setupSigningConfigs(

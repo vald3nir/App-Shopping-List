@@ -44,6 +44,7 @@ class ShoppingListRepositoryImpl @Inject constructor(private val dao: ShoppingLi
 
     override suspend fun addNewItem(newItem: ItemShoppingListDTO) {
         dao.insert(newItem.toNewModal())
+        exportShoppingLists()
     }
 
     override suspend fun saveShoppingList(dto: ShoppingListDTO) {

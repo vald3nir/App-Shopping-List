@@ -21,8 +21,10 @@ class ImportDataRepositoryImpl @Inject constructor(private val shoppingListDao: 
 
     override suspend fun importShoppingListFromServer() {
         kotlin.runCatching {
-            val response = FirebaseUseCase.importShoppingLists()
-            shoppingListDao.cleanAndInsert(response)
+            if (shoppingListDao.isEmpty()) {
+                val response = FirebaseUseCase.importShoppingLists()
+                shoppingListDao.cleanAndInsert(response)
+            }
         }.onFailure {
             it.notifyLog()
         }
