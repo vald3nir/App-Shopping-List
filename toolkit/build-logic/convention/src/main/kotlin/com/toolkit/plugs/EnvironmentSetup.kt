@@ -14,6 +14,7 @@ object EnvironmentSetup {
 const val composeBomVersion = "2023.10.01"
 const val composeGraphicsVersion = "1.5.4"
 const val composeToolingPreviewVersion = "1.5.4"
+const val runtimeLivedataVersion = "1.8.3"
 const val composeUiTestManifestVersion = "1.5.4"
 const val composeUiToolingVersion = "1.5.4"
 const val composeUiVersion = "1.8.0"

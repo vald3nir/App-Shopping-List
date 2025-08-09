@@ -22,7 +22,7 @@ fun ToolkitBaseContainer(
     backgroundColor: Color,
     snackBarHostState: SnackbarHostState = SnackbarHostState(),
     topBarContent: @Composable () -> Unit = {},
-    bottomBar: @Composable () -> Unit = {},
+    bottomBar: @Composable () -> Unit = {}, // todo valdenir renomear para bootomContainer
     floatingActionButton: @Composable () -> Unit = {},
     content: @Composable ColumnScope.() -> Unit
 ) {

@@ -22,6 +22,7 @@ import com.vald3nir.toolkit.compose.components.inputs.ToolkitIntegerInputField
 import com.vald3nir.toolkit.compose.designSystem.DefaultThemeColors
 import com.vald3nir.toolkit.compose.designSystem.schema.ScreenColorSchema
 import com.vald3nir.toolkit.helpers.utils.cap
+import com.vald3nir.toolkit.helpers.utils.toIntOrZero
 
 @Composable
 fun DialogInsertProduct(
@@ -67,7 +68,7 @@ fun DialogInsertProduct(
                     placeholder = "Quantidade",
                     startIcon = ToolkitIcons.Pin,
                     endIcon = ToolkitIcons.Edit,
-                    onValueChange = { inputQuantity = it },
+                    onValueChange = { inputQuantity = it.toIntOrZero() },
                 )
             }
         },

@@ -66,7 +66,7 @@ internal class AuthViewModel @Inject constructor() : BaseViewModel() {
     }
 
     fun useFakeData(activity: Activity?) {
-        finishAuthentication(activity, AuthLibLoginResponseType.FAKE_USER)
+        finishAuthentication(activity, AuthLibLoginResponseType.USE_TRIAL)
     }
 
     private fun finishAuthentication(activity: Activity?, responseType: AuthLibLoginResponseType) {

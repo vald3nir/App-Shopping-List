@@ -1,5 +1,6 @@
 package com.vald3nir.toolkit.helpers.baseclasses
 
+import androidx.compose.material3.SnackbarHostState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
@@ -14,14 +15,14 @@ open class BaseScreenScope(
     @Composable
     fun CollectUiState(
         onLoading: (Boolean) -> Unit = {},
-        onSuccess: (Any?) -> Unit = {},
+        onCallbackScreen: (Any?) -> Unit = {},
         onShowMessage: (String) -> Unit = {},
     ) {
         LaunchedEffect(Unit) {
             viewModel?.uiState?.collect { uiEvent ->
                 when (uiEvent) {
                     is BaseScreenState.Loading -> onLoading(uiEvent.show)
-                    is BaseScreenState.Success -> onSuccess(uiEvent.response)
+                    is BaseScreenState.CallbackScreen -> onCallbackScreen(uiEvent.response)
                     is BaseScreenState.ShowMessage -> uiEvent.message?.let { onShowMessage(it) }
                 }
             }
@@ -42,7 +43,19 @@ open class BaseScreenScope(
         }
     }
 
-    fun onBackPressed() {
+    fun onBackPressed(message: String? = null) {
+        message?.let { navController?.previousBackStackEntry?.savedStateHandle?.set("PARAM", it) }
         navController?.popBackStack()
+    }
+
+    fun getBackPressedMessage() = navController?.currentBackStackEntry?.savedStateHandle?.get<String?>("PARAM")
+
+    @Composable
+    fun SnackbarHostState.ShowBackPressedMessage() {
+        getBackPressedMessage()?.let { message ->
+            LaunchedEffect(Unit) {
+                showSnackbar(message)
+            }
+        }
     }
 }

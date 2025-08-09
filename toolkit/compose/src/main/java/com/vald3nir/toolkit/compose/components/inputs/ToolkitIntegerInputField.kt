@@ -16,6 +16,7 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import com.vald3nir.toolkit.compose.components.base.BuildIcon
 import com.vald3nir.toolkit.compose.components.base.DefaultSpaceHeight
@@ -25,7 +26,6 @@ import com.vald3nir.toolkit.compose.components.base.ToolkitText
 import com.vald3nir.toolkit.compose.designSystem.DefaultThemeColors
 import com.vald3nir.toolkit.compose.designSystem.schema.ScreenColorSchema
 import com.vald3nir.toolkit.compose.extensions.BuildLabel
-import com.vald3nir.toolkit.helpers.utils.toIntOrZero
 
 @Composable
 fun ToolkitIntegerInputField(
@@ -39,8 +39,10 @@ fun ToolkitIntegerInputField(
     colors: ScreenColorSchema,
     useTransparentBackend: Boolean = false,
     useTransparentBorder: Boolean = false,
+    isDecimal: Boolean = false,
+    textAlign: TextAlign = TextAlign.Center,
     onClickEndIcon: () -> Unit = {},
-    onValueChange: (Int) -> Unit = {}
+    onValueChange: (String) -> Unit = {}
 ) {
     val keyboardController = LocalSoftwareKeyboardController.current
     val backgroundColor = if (useTransparentBackend) Color.Transparent else colors.backgroundColor
@@ -49,9 +51,11 @@ fun ToolkitIntegerInputField(
     val trailingIcon: @Composable (() -> Unit)? = if (inputValue.isNotEmpty()) {
         ToolkitIcons.Close.BuildIcon(
             tint = colors.iconTint,
-            onClick = { onValueChange(0) }
+            onClick = { onValueChange("") }
         )
     } else endIcon?.BuildIcon(tint = colors.iconTint, onClick = onClickEndIcon)
+
+    val keyboardType = if (isDecimal) KeyboardType.Decimal else KeyboardType.Number
 
     Column(modifier = modifier.background(backgroundColor)) {
         if (label.isNotBlank()) {
@@ -60,25 +64,31 @@ fun ToolkitIntegerInputField(
         }
         OutlinedTextField(
             modifier = Modifier.fillMaxWidth(),
-            keyboardOptions = KeyboardOptions.Default.copy(keyboardType = KeyboardType.Number, imeAction = ImeAction.Done),
+            keyboardOptions = KeyboardOptions.Default.copy(
+                keyboardType = keyboardType,
+                imeAction = ImeAction.Done
+            ),
             keyboardActions = KeyboardActions(onDone = { keyboardController?.hide() }),
             onValueChange = { newValue ->
-                if (newValue.all { it.isDigit() }) {
-                    onValueChange(newValue.toIntOrZero())
+                val valid = if (isDecimal) {
+                    newValue.matches(Regex("""^\d*\.?\d{0,2}$"""))
+                } else {
+                    newValue.all { it.isDigit() }
                 }
+                if (valid) onValueChange(newValue)
             },
 
-            // Texts
             value = inputValue,
             placeholder = placeholder.BuildLabel(colors.textColor),
             singleLine = singleLine,
 
-            // Icons
             leadingIcon = startIcon?.BuildIcon(tint = colors.iconTint),
             trailingIcon = trailingIcon,
 
-            // Colors
-            textStyle = LocalTextStyle.current.copy(color = colors.textColor),
+            textStyle = LocalTextStyle.current.copy(
+                color = colors.textColor,
+                textAlign = textAlign
+            ),
             colors = OutlinedTextFieldDefaults.colors(
                 focusedBorderColor = borderColor,
                 unfocusedBorderColor = borderColor,
@@ -103,19 +113,20 @@ private fun Preview() {
         ToolkitIntegerInputField(
             inputValue = "123",
             colors = DefaultThemeColors().lightColors,
-            label = "label",
-            placeholder = "placeholder",
+            label = "Inteiro Esquerda",
+            placeholder = "0",
+            textAlign = TextAlign.Start,
+            isDecimal = false,
             startIcon = ToolkitIcons.Favorite,
-            endIcon = ToolkitIcons.Edit,
         )
         DefaultSpaceHeight()
         ToolkitIntegerInputField(
-            inputValue = "123",
+            inputValue = "45.67",
             colors = DefaultThemeColors().darkColors,
-            label = "label",
-            placeholder = "placeholder",
+            label = "Decimal Centralizado",
+            placeholder = "0.00",
+            isDecimal = true,
             startIcon = ToolkitIcons.Favorite,
-            endIcon = ToolkitIcons.Edit,
         )
     }
 }

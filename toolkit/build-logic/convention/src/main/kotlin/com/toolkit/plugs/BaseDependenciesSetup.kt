@@ -17,6 +17,7 @@ fun Project.setupBaseLibsCompose() {
         add("implementation", "androidx.compose.ui:ui:$composeUiVersion")
         add("implementation", "androidx.compose.ui:ui-graphics:$composeGraphicsVersion")
         add("implementation", "androidx.compose.ui:ui-tooling-preview:$composeToolingPreviewVersion")
+        add("implementation", "androidx.compose.runtime:runtime-livedata:$runtimeLivedataVersion")
         add("implementation", "androidx.compose.material:material:$materialVersion")
         add("implementation", "androidx.compose.material3:material3:$material3Version")
         add("implementation", "androidx.compose.material:material-icons-extended:$materialIconsExtendedVersion")

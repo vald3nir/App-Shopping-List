@@ -39,6 +39,7 @@ import com.vald3nir.toolkit.compose.templates.ToolkitBaseContainer
 import com.vald3nir.toolkit.helpers.utils.cap
 import com.vald3nir.toolkit.helpers.utils.orFalse
 import com.vald3nir.toolkit.helpers.utils.orZero
+import com.vald3nir.toolkit.helpers.utils.toIntOrZero
 import java.math.BigDecimal
 
 @Composable
@@ -48,7 +49,7 @@ fun EditItemListScope.EditItemListScreen(itemListID: Long?) {
         val colors = LocalAppColors.current
 
         CollectUiState(
-            onSuccess = { onBackPressed() }
+            onCallbackScreen = { onBackPressed() }
         )
 
         LoadItemShoppingList(itemListID)
@@ -128,7 +129,7 @@ fun EditShoppingItemListContent(
                     startIcon = ToolkitIcons.Pin,
                     endIcon = ToolkitIcons.Edit,
                     onValueChange = {
-                        itemQuantity = it
+                        itemQuantity = it.toIntOrZero()
                     },
                 )
 

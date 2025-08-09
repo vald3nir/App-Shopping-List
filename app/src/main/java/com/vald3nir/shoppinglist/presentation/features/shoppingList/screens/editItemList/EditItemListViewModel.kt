@@ -35,14 +35,14 @@ class EditItemListViewModel @Inject constructor(
     fun updateItem(item: ItemShoppingListDTO?) {
         launchWithScope {
             item?.let { repository.updateItemShoppingList(it) }
-            updateViewState(BaseScreenState.Success())
+            updateViewState(BaseScreenState.CallbackScreen())
         }
     }
 
     fun deleteItem(item: ItemShoppingListDTO?) {
         launchWithScope {
             item?.id?.let { repository.deleteItemShoppingList(it) }
-            updateViewState(BaseScreenState.Success())
+            updateViewState(BaseScreenState.CallbackScreen())
         }
     }
 }

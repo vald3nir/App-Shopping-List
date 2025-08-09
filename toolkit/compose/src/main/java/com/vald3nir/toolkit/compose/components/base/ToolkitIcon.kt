@@ -4,6 +4,7 @@ import androidx.compose.foundation.clickable
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowForwardIos
 import androidx.compose.material.icons.automirrored.filled.ExitToApp
+import androidx.compose.material.icons.automirrored.filled.Logout
 import androidx.compose.material.icons.automirrored.rounded.ArrowBack
 import androidx.compose.material.icons.automirrored.rounded.ArrowForward
 import androidx.compose.material.icons.automirrored.rounded.ShortText
@@ -14,6 +15,7 @@ import androidx.compose.material.icons.filled.Check
 import androidx.compose.material.icons.filled.ChevronRight
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.ContentCopy
+import androidx.compose.material.icons.filled.DateRange
 import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material.icons.filled.Edit
 import androidx.compose.material.icons.filled.Email
@@ -22,6 +24,8 @@ import androidx.compose.material.icons.filled.FavoriteBorder
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Inbox
 import androidx.compose.material.icons.filled.Info
+import androidx.compose.material.icons.filled.KeyboardArrowDown
+import androidx.compose.material.icons.filled.KeyboardArrowUp
 import androidx.compose.material.icons.filled.LocalMall
 import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material.icons.filled.MoreVert
@@ -32,6 +36,7 @@ import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.filled.Pin
 import androidx.compose.material.icons.filled.RemoveCircleOutline
 import androidx.compose.material.icons.filled.Save
+import androidx.compose.material.icons.filled.Science
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material.icons.filled.Share
@@ -60,7 +65,7 @@ fun ToolkitIcon(
     imageVector: ImageVector,
     contentDescription: String = "",
     tint: Color = Color.LightGray,
-    onClick: (() -> Unit)? = null
+    onClick: (() -> Unit)? = null,
 ) {
     Icon(
         modifier = modifier.clickable { onClick?.invoke() },
@@ -74,7 +79,7 @@ fun ToolkitIcon(
 fun ImageVector.BuildIcon(
     modifier: Modifier = Modifier,
     tint: Color = Color.LightGray,
-    onClick: (() -> Unit)? = null
+    onClick: (() -> Unit)? = null,
 ): @Composable (() -> Unit) {
     return {
         ToolkitIcon(
@@ -99,6 +104,8 @@ object ToolkitIcons {
     val BookmarksBorder = Icons.Outlined.Bookmarks
     val Check = Icons.Default.Check
     val ChevronRight = Icons.Default.ChevronRight
+    val ChevronUp = Icons.Default.KeyboardArrowUp
+    val ChevronDown = Icons.Default.KeyboardArrowDown
     val Close = Icons.Default.Close
     val Delete = Icons.Default.Delete
     val Edit = Icons.Default.Edit
@@ -133,4 +140,7 @@ object ToolkitIcons {
     val Email = Icons.Default.Email
     val Password = Icons.Default.Password
     val ContentCopy = Icons.Default.ContentCopy
+    val Science = Icons.Default.Science
+    val DateRange = Icons.Default.DateRange
+    val Logout = Icons.AutoMirrored.Filled.Logout
 }

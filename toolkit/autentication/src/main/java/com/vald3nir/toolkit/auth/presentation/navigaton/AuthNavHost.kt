@@ -13,7 +13,7 @@ import com.vald3nir.toolkit.auth.presentation.screens.SignUpScreen
 import com.vald3nir.toolkit.helpers.baseclasses.BaseActivity
 
 @Composable
-fun BaseActivity.AuthNavHost(serverClientId: String) {
+fun BaseActivity.AuthNavHost(serverClientId: String, imageLogo: Int) {
     val navController = rememberNavController()
     val viewModel = hiltViewModel<AuthViewModel>()
     viewModel.serverClientId = serverClientId
@@ -25,7 +25,7 @@ fun BaseActivity.AuthNavHost(serverClientId: String) {
                 activity = this@AuthNavHost,
                 viewModel = viewModel,
                 navController = navController
-            ).HomeAuthScreen()
+            ).HomeAuthScreen(imageLogo)
         }
 
         composable<AuthScreenRoute.Login> {

@@ -65,7 +65,7 @@ class ListDetailViewModel @Inject constructor(
             if (shoppingList != null) {
                 repository.cloneShoppingList(shoppingList)
             }
-            updateViewState(BaseScreenState.Success())
+            updateViewState(BaseScreenState.CallbackScreen())
         }
     }
 
