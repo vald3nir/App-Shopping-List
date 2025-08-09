@@ -43,7 +43,7 @@ fun ListDetailScope.ListDetailScreen(shoppingListID: Long? = null) {
         LoadShoppingList(shoppingListID)
 
         CollectUiState(
-            onSuccess = { onBackPressed() },
+            onCallbackScreen = { onBackPressed() },
             onShowMessage = { message ->
                 coroutineScope.launch {
                     snackBarHostState.showSnackbar(message)

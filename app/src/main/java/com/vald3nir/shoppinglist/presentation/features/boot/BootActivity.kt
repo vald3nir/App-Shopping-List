@@ -12,6 +12,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.platform.LocalContext
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.vald3nir.shoppinglist.BuildConfig
+import com.vald3nir.shoppinglist.R
 import com.vald3nir.shoppinglist.presentation.CustomActivity
 import com.vald3nir.toolkit.auth.AUTH_LIB_PARAM_LOGIN_RESPONSE
 import com.vald3nir.toolkit.auth.AuthLibLoginResponseType
@@ -30,7 +31,7 @@ internal class BootActivity : CustomActivity() {
     }
 }
 
-fun Context.buildBootActivityIntent() = Intent(this, BootActivity::class.java).apply {
+internal fun Context.buildBootActivityIntent() = Intent(this, BootActivity::class.java).apply {
     flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
 }
 
@@ -44,7 +45,7 @@ private fun BootScreenContent(activity: Activity) {
             val response: String? = result.data?.getStringExtra(AUTH_LIB_PARAM_LOGIN_RESPONSE)
             when (response) {
                 AuthLibLoginResponseType.SUCCESS.name -> viewModel.downloadDatabase(context)
-                AuthLibLoginResponseType.FAKE_USER.name -> viewModel.useFakeData(context)
+                AuthLibLoginResponseType.USE_TRIAL.name -> viewModel.useFakeData(context)
                 else -> activity.finish()
             }
         } else {
@@ -56,7 +57,10 @@ private fun BootScreenContent(activity: Activity) {
         viewModel.checkUserLoggedAndDownloadDatabase(
             context = context,
             onRedirectToAuth = {
-                val intent = context.buildAuthActivityIntent(serverClientId = BuildConfig.SERVER_CLIENT_ID)
+                val intent = context.buildAuthActivityIntent(
+                    serverClientId = BuildConfig.SERVER_CLIENT_ID,
+                    imageLogo = R.drawable.ic_logo
+                )
                 activityResultLauncher.launch(intent)
             }
         )

@@ -16,7 +16,7 @@ import com.vald3nir.shoppinglist.db.model.entities.ShoppingListModal
         ProductModel::class,
     ],
     version = BuildConfig.DB_VERSION,
-    exportSchema = true
+    exportSchema = false
 )
 abstract class AppDatabase : RoomDatabase() {
     abstract fun getShoppingListDao(): ShoppingListDao

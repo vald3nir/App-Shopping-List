@@ -1,6 +1,9 @@
 package com.vald3nir.toolkit.helpers.utils
 
 import java.text.SimpleDateFormat
+import java.time.LocalDate
+import java.time.Period
+import java.time.format.DateTimeFormatter
 import java.util.Calendar
 import java.util.Date
 import java.util.Locale
@@ -27,4 +30,11 @@ fun String?.getMonthReduced(): String {
 fun getCurrentDate(): String {
     val dateFormat = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
     return dateFormat.format(Date())
+}
+
+fun String.getAge(): Int {
+    val formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy")
+    val birthday = LocalDate.parse(this, formatter)
+    val today = LocalDate.now()
+    return Period.between(birthday, today).years
 }

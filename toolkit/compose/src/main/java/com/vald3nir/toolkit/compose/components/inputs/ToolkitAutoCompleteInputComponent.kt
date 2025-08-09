@@ -17,6 +17,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.text.style.TextAlign
 import com.vald3nir.toolkit.compose.components.base.HalfSpaceHeight
 import com.vald3nir.toolkit.compose.components.base.ToolkitText
 import com.vald3nir.toolkit.compose.components.base.halfSpace
@@ -33,6 +34,7 @@ fun ToolkitAutoCompleteInputComponent(
     inputValue: String,
     placeholder: String = "",
     label: String = "",
+    textAlign: TextAlign = TextAlign.Left,
     colors: ScreenColorSchema,
     useTransparentBackend: Boolean = false,
     startIcon: ImageVector? = null,
@@ -58,6 +60,7 @@ fun ToolkitAutoCompleteInputComponent(
             ToolkitInputTextComponent(
                 inputValue = inputValue,
                 useTransparentBackend = useTransparentBackend,
+                textAlign = textAlign,
                 colors = colors,
                 label = label,
                 placeholder = placeholder,

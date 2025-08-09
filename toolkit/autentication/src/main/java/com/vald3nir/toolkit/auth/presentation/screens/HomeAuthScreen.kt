@@ -1,6 +1,7 @@
 package com.vald3nir.toolkit.auth.presentation.screens
 
 import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -27,12 +28,14 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.vald3nir.toolkit.auth.AUTH_LIB_PARAM_IMAGE_LOGO_INVALID
 import com.vald3nir.toolkit.auth.R
 import com.vald3nir.toolkit.auth.presentation.AuthScope
 import com.vald3nir.toolkit.compose.components.base.BigSpaceHeight
 import com.vald3nir.toolkit.compose.components.base.DefaultSpaceHeight
 import com.vald3nir.toolkit.compose.components.base.ToolkitIcon
 import com.vald3nir.toolkit.compose.components.base.ToolkitIcons
+import com.vald3nir.toolkit.compose.components.base.ToolkitLinkButton
 import com.vald3nir.toolkit.compose.components.base.ToolkitText
 import com.vald3nir.toolkit.compose.designSystem.AppTheme
 import com.vald3nir.toolkit.compose.designSystem.DefaultThemeColors
@@ -43,7 +46,7 @@ import com.vald3nir.toolkit.compose.templates.ToolkitBaseLoadingScreen
 import kotlinx.coroutines.launch
 
 @Composable
-internal fun AuthScope.HomeAuthScreen() {
+internal fun AuthScope.HomeAuthScreen(imageLogo: Int) {
     AppTheme {
 
         val colors = LocalAppColors.current
@@ -64,6 +67,7 @@ internal fun AuthScope.HomeAuthScreen() {
             ToolkitBaseLoadingScreen()
         } else {
             HomeLoginScreenContent(
+                imageLogo = imageLogo,
                 colors = colors,
                 snackBarHostState = snackBarHostState,
                 onClickLoginWithGoogle = onClickLoginWithGoogle,
@@ -76,50 +80,59 @@ internal fun AuthScope.HomeAuthScreen() {
 
 @Composable
 private fun HomeLoginScreenContent(
+    imageLogo: Int,
     colors: ScreenColorSchema,
     snackBarHostState: SnackbarHostState = SnackbarHostState(),
     onClickLoginWithGoogle: () -> Unit = {},
     onClickLoginWithEmailAndPassword: (() -> Unit)? = null,
-    onTestClick: () -> Unit = {}
+    onTestClick: () -> Unit = {},
 ) {
     ToolkitBaseContainer(
         snackBarHostState = snackBarHostState,
         backgroundColor = colors.backgroundColor,
         content = {
             Column {
-                Header(colors)
+                Header(imageLogo, colors)
                 SectionLoginWithGoogle(
                     colors = colors,
                     onLoginClick = onClickLoginWithGoogle,
                 )
-                onClickLoginWithEmailAndPassword?.let {
-                    SectionLoginWithEmailAndPassword(
-                        colors = colors,
-                        onClickLoginWithEmailAndPassword = it
-                    )
-                }
-                SectionUseTestMode(
-                    colors = colors,
-                    onTestClick = onTestClick,
-                )
+//                onClickLoginWithEmailAndPassword?.let {
+//                    SectionLoginWithEmailAndPassword(
+//                        colors = colors,
+//                        onClickLoginWithEmailAndPassword = it
+//                    )
+//                }
+//                SectionUseTestMode(
+//                    colors = colors,
+//                    onTestClick = onTestClick,
+//                )
             }
         }
     )
 }
 
 @Composable
-private fun Header(colors: ScreenColorSchema) {
+private fun Header(imageLogo: Int, colors: ScreenColorSchema) {
     Column(
         modifier = Modifier.fillMaxWidth(),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Top
     ) {
         DefaultSpaceHeight()
-        ToolkitIcon(
-            imageVector = Icons.Default.AccountCircle,
-            tint = colors.iconTint,
-            modifier = Modifier.size(48.dp)
-        )
+        if (imageLogo != AUTH_LIB_PARAM_IMAGE_LOGO_INVALID) {
+            Image(
+                painter = painterResource(id = imageLogo),
+                contentDescription = null,
+                modifier = Modifier.size(96.dp)
+            )
+        } else {
+            ToolkitIcon(
+                imageVector = Icons.Default.AccountCircle,
+                tint = colors.iconTint,
+                modifier = Modifier.size(48.dp)
+            )
+        }
         DefaultSpaceHeight()
         ToolkitText.Title(
             text = stringResource(R.string.auth),
@@ -219,18 +232,11 @@ private fun SectionUseTestMode(colors: ScreenColorSchema, onTestClick: () -> Uni
             modifier = Modifier.Companion.align(Alignment.Start)
         )
         DefaultSpaceHeight()
-        Button(
+        ToolkitLinkButton(
             onClick = onTestClick,
-            colors = ButtonDefaults.buttonColors(containerColor = Color.Transparent),
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(48.dp)
-        ) {
-            ToolkitText.Link(
-                text = stringResource(R.string.btn_test),
-                textColor = colors.linkColor
-            )
-        }
+            btnLabel = stringResource(R.string.btn_test),
+            labelColor = colors.linkColor
+        )
     }
 }
 
@@ -241,6 +247,7 @@ private fun Preview() {
         colors = DefaultThemeColors().lightColors,
         onClickLoginWithGoogle = {},
         onClickLoginWithEmailAndPassword = {},
+        imageLogo = AUTH_LIB_PARAM_IMAGE_LOGO_INVALID,
         onTestClick = {},
     )
 }

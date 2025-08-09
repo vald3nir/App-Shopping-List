@@ -45,7 +45,7 @@ fun BuildListScope.BuildListScreen() {
 
         CollectUiState(
             onLoading = { isLoading = it },
-            onSuccess = { onBackPressed() },
+            onCallbackScreen = { onBackPressed() },
             onShowMessage = { message ->
                 coroutineScope.launch {
                     snackBarHostState.showSnackbar(message)

@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.text.selection.TextSelectionColors
+import androidx.compose.material3.LocalTextStyle
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.runtime.Composable
@@ -15,6 +16,7 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import com.vald3nir.toolkit.compose.components.base.BuildIcon
 import com.vald3nir.toolkit.compose.components.base.DefaultSpaceHeight
@@ -29,10 +31,12 @@ import com.vald3nir.toolkit.compose.extensions.BuildLabel
 @Composable
 fun ToolkitInputTextComponent(
     modifier: Modifier = Modifier,
+    enabled: Boolean = true,
     inputValue: String = "",
     errorValue: String? = null,
     placeholder: String = "",
     label: String = "",
+    textAlign: TextAlign = TextAlign.Left,
     keyboardType: KeyboardType = KeyboardType.Text,
     singleLine: Boolean = false,
     startIcon: ImageVector? = null,
@@ -61,6 +65,7 @@ fun ToolkitInputTextComponent(
         }
         OutlinedTextField(
             modifier = Modifier.fillMaxWidth(),
+            enabled = enabled,
             onValueChange = onValueChange,
             keyboardOptions = KeyboardOptions.Default.copy(keyboardType = keyboardType, imeAction = ImeAction.Done),
             keyboardActions = KeyboardActions(onDone = { keyboardController?.hide() }),
@@ -75,7 +80,10 @@ fun ToolkitInputTextComponent(
             trailingIcon = trailingIcon,
 
             // Colors
-            textStyle = ToolkitText.labelStyle(textColor = colors.textColor),
+            textStyle = LocalTextStyle.current.copy(
+                color = colors.textColor,
+                textAlign = textAlign
+            ),
             colors = OutlinedTextFieldDefaults.colors(
                 focusedBorderColor = borderColor,
                 unfocusedBorderColor = borderColor,

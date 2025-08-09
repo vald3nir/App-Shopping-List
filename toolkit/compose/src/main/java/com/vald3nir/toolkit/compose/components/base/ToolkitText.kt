@@ -77,8 +77,8 @@ object ToolkitText {
     @Composable
     fun Label(
         modifier: Modifier = Modifier,
-        text: String, textColor:
-        Color = Color.Gray,
+        text: String,
+        textColor: Color = Color.Gray,
         textAlign: TextAlign = TextAlign.Companion.Start
     ) {
         Text(

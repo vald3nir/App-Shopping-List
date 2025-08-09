@@ -15,16 +15,20 @@ import androidx.compose.ui.unit.dp
 @Composable
 fun ToolkitCard(
     modifier: Modifier = Modifier,
-    onClick: () -> Unit = {},
+    onClick: (() -> Unit)? = null,
     shape: RoundedCornerShape = RoundedCornerShape(8.dp),
     elevation: Dp = 4.dp,
     backgroundColor: Color = Color.White,
-    content: @Composable () -> Unit
+    content: @Composable () -> Unit,
 ) {
+    var cardModifier = modifier.fillMaxWidth()
+    if (onClick != null) {
+        cardModifier = cardModifier.clickable(enabled = true, onClick = { onClick() })
+    }
     Card(
-        modifier = modifier
-            .fillMaxWidth()
-            .clickable { onClick() }, shape = shape, elevation = elevation
+        modifier = cardModifier,
+        shape = shape,
+        elevation = elevation
     ) {
         Column(modifier = Modifier.background(backgroundColor)) {
             content()

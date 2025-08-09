@@ -29,6 +29,7 @@ import com.vald3nir.toolkit.compose.designSystem.AppThemeViewModel
 import com.vald3nir.toolkit.compose.designSystem.DefaultThemeColors
 import com.vald3nir.toolkit.compose.designSystem.schema.ScreenColorSchema
 import com.vald3nir.toolkit.compose.templates.ToolkitBaseContainer
+import com.vald3nir.toolkit.compose.templates.ToolkitBaseLoadingScreen
 import com.vald3nir.toolkit.compose.templates.ToolkitEmptyStateScreen
 import com.vald3nir.toolkit.helpers.utils.orFalse
 import kotlinx.coroutines.launch
@@ -58,21 +59,25 @@ internal fun HomeScreenScope.HomeScreen() {
     )
 
     AppTheme {
-        HomeContent(
-            lists = shoppingLists,
-            isDarkMode = isDarkMode,
-            colors = appThemeViewModel.currentTheme(context),
-            scope = this,
-            searchQuery = searchQuery,
-            onQueryChange = updateSearchQueryEvent,
-            userImageUrl = userPhotoUrl(),
-            onClickAddNewList = { redirectToCreateNewList() },
-            onChangeTheme = {
-                isDarkMode = !isDarkMode
-                appThemeViewModel.updateTheme(isDarkMode)
-            },
-            snackBarHostState = snackBarHostState
-        )
+        if (isLoading) {
+            ToolkitBaseLoadingScreen()
+        } else {
+            HomeContent(
+                lists = shoppingLists,
+                isDarkMode = isDarkMode,
+                colors = appThemeViewModel.currentTheme(context),
+                scope = this,
+                searchQuery = searchQuery,
+                onQueryChange = updateSearchQueryEvent,
+                userImageUrl = userPhotoUrl(),
+                onClickAddNewList = { redirectToCreateNewList() },
+                onChangeTheme = {
+                    isDarkMode = !isDarkMode
+                    appThemeViewModel.updateTheme(isDarkMode)
+                },
+                snackBarHostState = snackBarHostState
+            )
+        }
     }
 }
 
