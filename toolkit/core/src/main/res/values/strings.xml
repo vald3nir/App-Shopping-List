@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="default_sync_work_notification_channel_name">Atualizações no app</string>
+    <string name="default_sync_work_notification_channel_description">Atualizações de app em segundo plano</string>
+</resources>

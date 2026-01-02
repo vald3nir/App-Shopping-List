@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="auth_terms_politics_description">"Ao fazer login, você concorda com nossos "</string>
+    <string name="auth_terms_and_conditions">Termos e Condições</string>
+    <string name="auth_privacy_policy">Política de Privacidade</string>
+    <string name="auth_sign_in_with_your_google_account">Fazer login com a conta Google</string>
+    <string name="auth_btn_login_label">Login</string>
+    <string name="auth_screen_title">Autenticação de usuário</string>
+    <string name="auth_login_info">O login com o Google é necessário para sincronizar os dados do app com a nuvem, garantindo que fiquem salvos com segurança como backup.</string>
+    <string name="auth_create_account_description">Ao autenticar-se com sua conta Google, o aplicativo criará uma nova conta automaticamente, caso ainda não exista.</string>
+    <string name="auth_create_account_offline_warning">É nescessário ter conexão com a internet para autenticar-se.</string>
+    <string name="auth_wifi_connect">Selecionar rede Wi-Fi</string>
+</resources>
