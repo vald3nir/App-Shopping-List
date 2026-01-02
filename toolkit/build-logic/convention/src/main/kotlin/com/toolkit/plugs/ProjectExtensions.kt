@@ -7,21 +7,17 @@ import org.gradle.kotlin.dsl.configure
 import java.io.File
 import java.util.Properties
 
-
-const val debugName = "debug"
-const val releaseName = "release"
-
 fun Project.setupBuildTypes() {
     extensions.configure<ApplicationExtension> {
         buildTypes.apply {
-            maybeCreate(debugName)
-            getByName(debugName) {
-                applicationIdSuffix = ".${debugName}"
+            maybeCreate(AppBuildType.DEBUG.lowerCaseName)
+            getByName(AppBuildType.DEBUG.lowerCaseName) {
+                applicationIdSuffix = AppBuildType.DEBUG.applicationIdSuffix
                 isMinifyEnabled = false
                 isDebuggable = true
             }
-            maybeCreate(releaseName)
-            getByName(releaseName) {
+            maybeCreate(AppBuildType.RELEASE.lowerCaseName)
+            getByName(AppBuildType.RELEASE.lowerCaseName) {
                 isMinifyEnabled = true
                 isDebuggable = false
                 proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
@@ -46,31 +42,60 @@ fun Project.setupProductFlavors() {
     }
 }
 
-
-fun Project.setupSigningConfigs(pathKeyStore: String, keyAlias: String, keyPassword: String, storePassword: String) {
+fun Project.setupSigningConfigs(parameters: AppEnvironmentParameters) {
     extensions.configure<ApplicationExtension> {
-        val storeFilePath = File(pathKeyStore)
         buildTypes.apply {
             signingConfigs {
-                getByName(debugName) { inputParam(storeFilePath = storeFilePath, keyAlias = keyAlias, keyPassword = keyPassword, storePassword = storePassword) }
-                create(releaseName) { inputParam(storeFilePath = storeFilePath, keyAlias = keyAlias, keyPassword = keyPassword, storePassword = storePassword) }
+                getByName(AppBuildType.DEBUG.lowerCaseName) {
+                    inputParam(parameters = parameters)
+                }
+                create(AppBuildType.RELEASE.lowerCaseName) {
+                    inputParam(parameters = parameters)
+                }
             }
         }
     }
 }
 
-private fun ApkSigningConfig.inputParam(storeFilePath: File, keyAlias: String, keyPassword: String, storePassword: String) {
-    this.keyAlias = keyAlias
-    this.keyPassword = keyPassword
-    this.storeFile = storeFilePath
-    this.storePassword = storePassword
+private fun ApkSigningConfig.inputParam(parameters: AppEnvironmentParameters) {
+    this.keyAlias = parameters.keyAlias
+    this.keyPassword = parameters.keyPassword
+    this.storeFile = File(parameters.pathKeyStore)
+    this.storePassword = parameters.storePassword
 }
 
-fun getEnvParameter(envFilePath: String, key: String, defaultValue: String = ""): String {
-    val envFile = File(envFilePath)
-    if (!envFile.exists()) return defaultValue
-    val props = Properties().apply {
-        envFile.inputStream().use { load(it) }
+data class AppEnvironmentParameters(
+    val pathKeyStore: String = "",
+    val keyAlias: String = "",
+    val keyPassword: String = "",
+    val storePassword: String = "",
+    val appPrivacyPolicyURL: String = "",
+    val termsUseURL: String = "",
+    val webGoogleClientID: String = "",
+    val firebaseServiceCredentialsFilePath: String = "",
+    val supabaseUrl: String = "",
+    val supabaseKey: String = "",
+) {
+    companion object {
+
+        fun from(envFilePath: String): AppEnvironmentParameters {
+            val envFile = File(envFilePath)
+            if (!envFile.exists()) return AppEnvironmentParameters()
+            val props = Properties().apply {
+                envFile.inputStream().use { load(it) }
+            }
+            return AppEnvironmentParameters(
+                pathKeyStore = props.getProperty("KEY_STORE_PATH", ""),
+                keyAlias = props.getProperty("KEY_STORE_ALIAS", ""),
+                keyPassword = props.getProperty("KEY_STORE_PASSWORD", ""),
+                storePassword = props.getProperty("STORE_PASSWORD", ""),
+                appPrivacyPolicyURL = props.getProperty("APP_PRIVACY_POLICY_URL", ""),
+                termsUseURL = props.getProperty("APP_TERMS_USE_URL", ""),
+                webGoogleClientID = props.getProperty("WEB_GOOGLE_CLIENT_ID", ""),
+                firebaseServiceCredentialsFilePath = props.getProperty("FIREBASE_SERVICE_CREDENTIALS_FILE_PATH", ""),
+                supabaseUrl = props.getProperty("SUPABASE_URL", ""),
+                supabaseKey = props.getProperty("SUPABASE_KEY", ""),
+            )
+        }
     }
-    return props.getProperty(key, defaultValue)
 }
