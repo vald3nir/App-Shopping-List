@@ -12,5 +12,6 @@ internal data class ShoppingListEntity(
     val title: String? = null,
     val createdAt: String = getCurrentDate(),
     val lastUpdated: Long = System.currentTimeMillis(),
-    val inEditing: Boolean = false
+    val inEditing: Boolean = false,
+    val deleted: Boolean = false// for sync
 )

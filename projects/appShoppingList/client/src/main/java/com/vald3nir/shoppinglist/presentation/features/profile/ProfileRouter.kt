@@ -12,10 +12,6 @@ fun NavController.navigateToProfile() {
     this.navigate(ProfileRouter)
 }
 
-internal fun NavGraphBuilder.setupProfileRoute(
-    onBackPressed: () -> Unit
-) {
-    composable<ProfileRouter> {
-        ProfileScreen(onBackPressed = onBackPressed)
-    }
+internal fun NavGraphBuilder.setupProfileRoute() {
+    composable<ProfileRouter> { ProfileScreen() }
 }

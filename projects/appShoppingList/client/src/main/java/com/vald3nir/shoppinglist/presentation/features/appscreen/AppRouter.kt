@@ -2,6 +2,7 @@ package com.vald3nir.shoppinglist.presentation.features.appscreen
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import com.vald3nir.shoppinglist.BuildConfig
 import com.vald3nir.shoppinglist.presentation.features.create.item.navigateToCreateItemList
@@ -20,12 +21,10 @@ import com.vald3nir.toolkit.auth.presentation.navigateToAuth
 import com.vald3nir.toolkit.auth.presentation.setupAuthRoute
 
 @Composable
-internal fun AppRouter(modifier: Modifier = Modifier, appState: AppScreenState) {
-    val navController = appState.navController
-    val onBackPressed: () -> Unit = { navController.popBackStack() }
+internal fun AppRouter(modifier: Modifier = Modifier, navController: NavHostController) {
     NavHost(navController = navController, startDestination = HomeRoute, modifier = modifier) {
 
-        setupProfileRoute(onBackPressed = onBackPressed)
+        setupProfileRoute()
 
         setupHomeRoute(
             redirectToListDetail = { shoppingListID ->
@@ -46,17 +45,15 @@ internal fun AppRouter(modifier: Modifier = Modifier, appState: AppScreenState) 
             appPrivacyPolicyURL = BuildConfig.APP_PRIVACY_POLICY_URL,
             appTermsUseLink = BuildConfig.APP_TERMS_USE_URL,
             webGoogleClientID = BuildConfig.WEB_GOOGLE_CLIENT_ID,
-            onBackPressed = onBackPressed,
         )
 
         setupCreateListRoute(
             onClickAddData = { shoppingListID ->
                 navController.navigateToCreateItemList(shoppingListID = shoppingListID)
             },
-            onBackPressed = onBackPressed
         )
 
-        setupCreateItemListRoute(onBackPressed = onBackPressed)
+        setupCreateItemListRoute()
 
         setupListDetailsRoute(
             onClickAddData = { shoppingListID ->
@@ -64,10 +61,9 @@ internal fun AppRouter(modifier: Modifier = Modifier, appState: AppScreenState) 
             },
             onClickItemDetail = { itemId ->
                 navController.navigateToItemDetail(itemId)
-            },
-            onBackPressed = onBackPressed
+            }
         )
 
-        setupItemDetailRoute(onBackPressed = onBackPressed)
+        setupItemDetailRoute()
     }
 }

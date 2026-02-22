@@ -1,5 +1,6 @@
 package com.vald3nir.toolkit.designsystem.components.buttons
 
+import androidx.compose.material3.ButtonColors
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.TextButton
@@ -16,14 +17,13 @@ fun ToolkitTextButton(
     label: String,
     leadingIcon: ImageVector? = null,
     trailingIcon: ImageVector? = null,
+    colors: ButtonColors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.onBackground),
 ) {
     TextButton(
         onClick = onClick,
         modifier = modifier,
         enabled = enabled,
-        colors = ButtonDefaults.textButtonColors(
-            contentColor = MaterialTheme.colorScheme.onBackground,
-        ),
+        colors = colors,
         content = {
             ToolkitButtonContent(
                 label = label,

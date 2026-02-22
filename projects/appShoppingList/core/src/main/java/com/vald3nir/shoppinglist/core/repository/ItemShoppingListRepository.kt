@@ -13,7 +13,7 @@ import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
 interface ItemShoppingListRepository {
-    suspend fun createNewShoppingListItem(item: ItemShoppingListDTO)
+    suspend fun insertNewItemList(item: ItemShoppingListDTO)
     fun getItemFlow(itemId: Long): Flow<ItemShoppingListDTO>
     fun getItemsByListFlow(listId: Long): Flow<List<ItemShoppingListDTO>>
     suspend fun toggleIsAdd(itemId: Long?)
@@ -27,8 +27,8 @@ internal class ItemShoppingListRepositoryImpl @Inject constructor(
     private val categoryDao: CategoryDao,
 ) : ItemShoppingListRepository {
 
-    override suspend fun createNewShoppingListItem(item: ItemShoppingListDTO) {
-        analyticsHelper.onLog("createNewShoppingListItem called with item: $item")
+    override suspend fun insertNewItemList(item: ItemShoppingListDTO) {
+        analyticsHelper.onLog("insertNewItemList called with item: $item")
         val categoryInfo = item.product?.let { categoryDao.getProductWithCategoryByName(it) }
         itemShoppingListDao.insert(
             entity = ItemShoppingListEntity(

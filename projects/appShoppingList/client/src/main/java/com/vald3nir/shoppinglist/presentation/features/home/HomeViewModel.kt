@@ -3,13 +3,13 @@ package com.vald3nir.shoppinglist.presentation.features.home
 import androidx.lifecycle.viewModelScope
 import androidx.work.ExistingWorkPolicy
 import androidx.work.WorkManager
-import com.vald3nir.shoppinglist.domain.HomeScreenDTO
 import com.vald3nir.shoppinglist.core.repository.ShoppingListRepository
 import com.vald3nir.shoppinglist.core.sync.workers.SyncListsWorker
+import com.vald3nir.shoppinglist.domain.HomeScreenDTO
 import com.vald3nir.toolkit.auth.repository.AuthenticatedUserRepository
 import com.vald3nir.toolkit.core.baseclasses.BaseUiState
 import com.vald3nir.toolkit.core.baseclasses.BaseViewModel
-import com.vald3nir.toolkit.core.services.sync.monitors.NetworkMonitor
+import com.vald3nir.toolkit.core.baseclasses.BaseViewModelParameters
 import com.vald3nir.toolkit.core.services.sync.worker.createSyncWorkRequest
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -26,8 +26,8 @@ internal class HomeViewModel @Inject constructor(
     private val workManager: WorkManager,
     authenticatedUserRepository: AuthenticatedUserRepository,
     repository: ShoppingListRepository,
-    networkMonitor: NetworkMonitor,
-) : BaseViewModel(networkMonitor) {
+    parameters: BaseViewModelParameters
+) : BaseViewModel(parameters) {
 
     fun syncLists() {
         workManager.enqueueUniqueWork("SyncLists", ExistingWorkPolicy.KEEP, createSyncWorkRequest<SyncListsWorker>())

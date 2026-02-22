@@ -69,7 +69,12 @@ fun Project.setupBaseLibs() {
         add("implementation", "com.google.code.gson:gson:$gsonVersion")
 
         // Test Libs
-        add("testImplementation", "junit:junit:$junitVersion")
+        add("testImplementation", "org.junit.jupiter:junit-jupiter-api:$junitVersion")
+        add("testImplementation", "org.junit.jupiter:junit-jupiter-engine:$junitVersion")
+        add("testImplementation", "org.junit.jupiter:junit-jupiter-params:$junitVersion")
+        add("testRuntimeOnly", "org.junit.platform:junit-platform-launcher")
+        add("testImplementation", "io.mockk:mockk:$mockkVersion")
+        add("testImplementation", "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutinesTestVersion")
         add("androidTestImplementation", "androidx.test.ext:junit:$androidJunitVersion")
         add("androidTestImplementation", "androidx.test.espresso:espresso-core:$espressoCoreVersion")
         add("debugImplementation", "androidx.compose.ui:ui-test-manifest:$composeUiTestManifestVersion")

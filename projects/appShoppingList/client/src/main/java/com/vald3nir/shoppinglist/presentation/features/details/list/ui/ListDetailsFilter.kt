@@ -11,7 +11,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.vald3nir.shoppinglist.R
 import com.vald3nir.shoppinglist.core.domain.dto.ShoppingListTabDTO
-import com.vald3nir.shoppinglist.presentation.theme.AppTheme
+import com.vald3nir.shoppinglist.core.ui.thema.AppTheme
 import com.vald3nir.toolkit.designsystem.annotations.ThemePreviews
 import com.vald3nir.toolkit.designsystem.components.containers.ToolkitBackground
 import com.vald3nir.toolkit.designsystem.components.icons.ToolkitIconCatalog

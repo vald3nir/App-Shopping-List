@@ -6,11 +6,8 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.safeDrawing
 import androidx.compose.foundation.layout.windowInsetsPadding
-import androidx.compose.material3.SnackbarDuration
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -20,15 +17,15 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import com.vald3nir.toolkit.auth.presentation.components.Body
-import com.vald3nir.toolkit.auth.presentation.components.Header
-import com.vald3nir.toolkit.auth.presentation.components.TermsAndPrivacyText
+import com.vald3nir.toolkit.auth.presentation.ui.Body
+import com.vald3nir.toolkit.auth.presentation.ui.Header
+import com.vald3nir.toolkit.auth.presentation.ui.TermsAndPrivacyText
 import com.vald3nir.toolkit.core.baseclasses.BaseUiState
 import com.vald3nir.toolkit.core.utils.extensions.openLinkURL
 import com.vald3nir.toolkit.designsystem.annotations.ThemePreviews
+import com.vald3nir.toolkit.designsystem.components.ToolkitSpacingMd
 import com.vald3nir.toolkit.designsystem.components.containers.ToolkitBackground
-import com.vald3nir.toolkit.designsystem.components.defaultSpace
-import com.vald3nir.toolkit.designsystem.templates.ToolkitBaseContent
+import com.vald3nir.toolkit.designsystem.templates.ToolkitScaffold
 import com.vald3nir.toolkit.designsystem.theme.ToolkitTheme
 
 @Composable
@@ -37,25 +34,16 @@ internal fun AuthScreen(
     appPrivacyPolicyURL: String,
     appTermsUseLink: String,
     webGoogleClientID: String,
-    onLoginSuccess: () -> Unit = {},
 ) {
     val context = LocalContext.current
     val snackBarHostState = remember { SnackbarHostState() }
     var showLoading: Boolean by remember { mutableStateOf(false) }
     val hasInternetConnection by viewModel.hasInternetConnection.collectAsStateWithLifecycle()
-    val message by viewModel.uiMessage.collectAsState()
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
 
     when (uiState) {
         is BaseUiState.LoadingState -> showLoading = (uiState as BaseUiState.LoadingState).show
-        is BaseUiState.CloseState -> onLoginSuccess()
         else -> Unit
-    }
-
-    LaunchedEffect(message) {
-        if (message.isNotEmpty()) {
-            snackBarHostState.showSnackbar(message = message, duration = SnackbarDuration.Short)
-        }
     }
 
     AuthScreenContent(
@@ -83,11 +71,11 @@ internal fun AuthScreenContent(
     onClickTerms: () -> Unit = {},
     onClickPrivacyPolicy: () -> Unit = {},
 ) {
-    ToolkitBaseContent(snackBarHostState = snackBarHostState) {
+    ToolkitScaffold(snackBarHostState = snackBarHostState) {
         Box(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(defaultSpace)
+                .padding(ToolkitSpacingMd)
                 .windowInsetsPadding(WindowInsets.safeDrawing)
         ) {
             Header()

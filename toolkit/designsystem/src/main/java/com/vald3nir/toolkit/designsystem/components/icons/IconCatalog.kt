@@ -59,6 +59,7 @@ import androidx.compose.material.icons.outlined.Tag
 import androidx.compose.material.icons.outlined.Upcoming
 import androidx.compose.material.icons.outlined.Warning
 import androidx.compose.material.icons.outlined.Wifi
+import androidx.compose.material.icons.outlined.WifiOff
 import androidx.compose.material.icons.rounded.Bookmark
 import androidx.compose.material.icons.rounded.BookmarkBorder
 import androidx.compose.material.icons.rounded.Bookmarks
@@ -85,8 +86,8 @@ object ToolkitIconCatalog {
     val ChevronLeft = Icons.Default.ChevronLeft
     val ChevronRight = Icons.Default.ChevronRight
     val ChevronUp = Icons.Default.KeyboardArrowUp
-    val CloudSync = Icons.Outlined.CloudSync
     val Close = Icons.Default.Close
+    val CloudSync = Icons.Outlined.CloudSync
     val ContentCopy = Icons.Default.ContentCopy
     val DarkMode = Icons.Default.DarkMode
     val DateRange = Icons.Default.DateRange
@@ -108,6 +109,7 @@ object ToolkitIconCatalog {
     val MoreVert = Icons.Default.MoreVert
     val Notifications = Icons.Default.Notifications
     val Paid = Icons.Default.Paid
+    val Palette = Icons.Outlined.Palette
     val Password = Icons.Default.Password
     val Person = Icons.Default.Person
     val Pin = Icons.Default.Pin
@@ -123,20 +125,17 @@ object ToolkitIconCatalog {
     val ShoppingCart = Icons.Default.ShoppingCart
     val ShortText = Icons.AutoMirrored.Rounded.ShortText
     val Star = Icons.Default.Star
+    val Tag = Icons.Outlined.Tag
     val Upcoming = Icons.Rounded.Upcoming
     val UpcomingBorder = Icons.Outlined.Upcoming
     val ViewDay = Icons.Rounded.ViewDay
     val Visibility = Icons.Default.Visibility
     val VisibilityOff = Icons.Default.VisibilityOff
-    val Wifi = Icons.Outlined.Wifi
-    val Tag = Icons.Outlined.Tag
-    val Palette = Icons.Outlined.Palette
     val Warning = Icons.Outlined.Warning
+    val Wifi = Icons.Outlined.Wifi
+    val WifiOff = Icons.Outlined.WifiOff
 
     val allIcons = listOf(
-        "Warning" to Warning,
-        "Palette" to Palette,
-        "Tag" to Tag,
         "AccountCircle" to AccountCircle,
         "Add" to Add,
         "AddChart" to AddChart,
@@ -154,8 +153,8 @@ object ToolkitIconCatalog {
         "ChevronLeft" to ChevronLeft,
         "ChevronRight" to ChevronRight,
         "ChevronUp" to ChevronUp,
-        "CloudSync" to CloudSync,
         "Close" to Close,
+        "CloudSync" to CloudSync,
         "ContentCopy" to ContentCopy,
         "DarkMode" to DarkMode,
         "DateRange" to DateRange,
@@ -177,6 +176,7 @@ object ToolkitIconCatalog {
         "MoreVert" to MoreVert,
         "Notifications" to Notifications,
         "Paid" to Paid,
+        "Palette" to Palette,
         "Password" to Password,
         "Person" to Person,
         "Pin" to Pin,
@@ -192,11 +192,14 @@ object ToolkitIconCatalog {
         "ShoppingCart" to ShoppingCart,
         "ShortText" to ShortText,
         "Star" to Star,
+        "Tag" to Tag,
         "Upcoming" to Upcoming,
         "UpcomingBorder" to UpcomingBorder,
         "ViewDay" to ViewDay,
         "Visibility" to Visibility,
         "VisibilityOff" to VisibilityOff,
-        "Wifi" to Wifi
+        "Warning" to Warning,
+        "Wifi" to Wifi,
+        "WifiOff" to WifiOff
     )
 }

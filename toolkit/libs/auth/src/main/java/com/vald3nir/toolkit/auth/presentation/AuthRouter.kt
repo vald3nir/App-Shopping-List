@@ -16,14 +16,12 @@ fun NavGraphBuilder.setupAuthRoute(
     appPrivacyPolicyURL: String,
     appTermsUseLink: String,
     webGoogleClientID: String,
-    onBackPressed: () -> Unit
 ) {
     composable<FirebaseAuthRoute> {
         AuthScreen(
             appPrivacyPolicyURL = appPrivacyPolicyURL,
             appTermsUseLink = appTermsUseLink,
             webGoogleClientID = webGoogleClientID,
-            onLoginSuccess = onBackPressed
         )
     }
 }

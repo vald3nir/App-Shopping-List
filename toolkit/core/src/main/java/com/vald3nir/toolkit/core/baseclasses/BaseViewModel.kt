@@ -9,20 +9,35 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-abstract class BaseViewModel(networkMonitor: NetworkMonitor) : ViewModel() {
+class BaseViewModelParameters @Inject constructor(
+    val networkMonitor: NetworkMonitor,
+    val messageNotifier: MessageNotifier,
+    val navigationDelegate: NavigationDelegate,
+)
 
-    val hasInternetConnection: StateFlow<Boolean> = networkMonitor.isOnline
+abstract class BaseViewModel(private val parameters: BaseViewModelParameters) : ViewModel() {
+
+    val hasInternetConnection: StateFlow<Boolean> = parameters.networkMonitor.isOnline
         .stateIn(
             scope = viewModelScope,
             started = SharingStarted.WhileSubscribed(5_000),
-            initialValue = false
+            initialValue = true
         )
 
-    private val _uiMessage = MutableStateFlow("")
-    val uiMessage: StateFlow<String> = _uiMessage.asStateFlow()
     fun notifyUiMessage(message: String) {
-        _uiMessage.value = message
+        viewModelScope.launch {
+            parameters.messageNotifier.showMessage(message)
+        }
+    }
+
+    fun messageObserver() = parameters.messageNotifier.messages
+
+    fun navigateObserver() = parameters.navigationDelegate.backEvents
+
+    fun navigateBack() {
+        parameters.navigationDelegate.navigateBack()
     }
 
     private val _uiState = MutableStateFlow<BaseUiState>(BaseUiState.LoadingState(false))
