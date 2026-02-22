@@ -9,7 +9,6 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.vald3nir.shoppinglist.presentation.features.home.ui.HomeEmptyState
 import com.vald3nir.shoppinglist.presentation.features.home.ui.HomeScreenContent
 import com.vald3nir.toolkit.core.baseclasses.BaseUiState
-import com.vald3nir.toolkit.core.utils.extensions.orFalse
 import com.vald3nir.toolkit.designsystem.templates.ToolkitLoadingFullscreen
 
 @Composable
@@ -18,19 +17,10 @@ internal fun HomeScreen(
     redirectToCreateList: () -> Unit,
     redirectToListDetail: (shoppingListID: Long?) -> Unit,
     redirectToProfile: () -> Unit,
-    redirectToAuth: () -> Unit,
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
     val searchQuery by viewModel.searchQuery.collectAsState()
     val homeData by viewModel.homeDataFlow.collectAsStateWithLifecycle()
-
-    val onClickAvatar: () -> Unit = {
-        if (homeData?.hasUserLogged().orFalse()) {
-            redirectToProfile()
-        } else {
-            redirectToAuth()
-        }
-    }
 
     LaunchedEffect(Unit) {
         viewModel.syncLists()
@@ -46,7 +36,7 @@ internal fun HomeScreen(
             HomeEmptyState(
                 userImageUrl = homeData?.user?.photoUrl,
                 onClickAddData = redirectToCreateList,
-                onAvatarClick = onClickAvatar,
+                onAvatarClick = redirectToProfile,
             )
             return
         }
@@ -56,7 +46,7 @@ internal fun HomeScreen(
                 searchQuery = searchQuery,
                 lists = homeData?.lists.orEmpty(),
                 userImageUrl = homeData?.user?.photoUrl,
-                onAvatarClick = onClickAvatar,
+                onAvatarClick = redirectToProfile,
                 onClickAddData = redirectToCreateList,
                 filterLists = { viewModel.onSearchQueryChanged(it) },
                 onClickShowDetail = redirectToListDetail

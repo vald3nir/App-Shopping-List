@@ -37,6 +37,8 @@ include(":projects:appShoppingList:manager")
 include(":toolkit:core")
 include(":toolkit:designsystem")
 include(":toolkit:libs:auth")
+include(":toolkit:libs:themas")
+include(":toolkit:libs:servicelocation")
 
 check(JavaVersion.current().isCompatibleWith(JavaVersion.VERSION_17)) {
     """

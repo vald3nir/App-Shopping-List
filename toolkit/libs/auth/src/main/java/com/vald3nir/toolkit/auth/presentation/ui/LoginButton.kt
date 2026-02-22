@@ -21,7 +21,7 @@ import androidx.compose.ui.unit.dp
 import com.vald3nir.toolkit.auth.R
 import com.vald3nir.toolkit.designsystem.annotations.ThemePreviews
 import com.vald3nir.toolkit.designsystem.components.containers.ToolkitBackground
-import com.vald3nir.toolkit.designsystem.components.loadings.ToolkitLoadingWheel
+import com.vald3nir.toolkit.designsystem.components.containers.ToolkitLoadingWheel
 import com.vald3nir.toolkit.designsystem.components.texts.ToolkitText
 import com.vald3nir.toolkit.designsystem.components.texts.ToolkitTextStyle
 import com.vald3nir.toolkit.designsystem.theme.ToolkitTheme

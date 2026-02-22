@@ -14,16 +14,19 @@ import androidx.compose.ui.unit.dp
 import com.vald3nir.shoppinglist.R
 import com.vald3nir.shoppinglist.core.ui.thema.AppTheme
 import com.vald3nir.toolkit.auth.domain.AuthenticatedUserDTO
+import com.vald3nir.toolkit.core.utils.extensions.orFalse
 import com.vald3nir.toolkit.designsystem.annotations.ThemePreviews
 import com.vald3nir.toolkit.designsystem.components.ToolkitSpaceHeight
 import com.vald3nir.toolkit.designsystem.components.ToolkitSpacingSm
+import com.vald3nir.toolkit.designsystem.components.buttons.ToolkitBaseButton
 import com.vald3nir.toolkit.designsystem.components.containers.ToolkitBackground
 import com.vald3nir.toolkit.designsystem.components.icons.ToolkitIconAvatar
 import com.vald3nir.toolkit.designsystem.components.texts.ToolkitText
 import com.vald3nir.toolkit.designsystem.components.texts.ToolkitTextStyle
+import com.vald3nir.toolkit.designsystem.templates.ToolkitColumn
 
 @Composable
-internal fun ProfileHeader(user: AuthenticatedUserDTO? = null) {
+internal fun ProfileHeader(user: AuthenticatedUserDTO? = null, onClickLogin: () -> Unit = {}) {
     Column(
         modifier = Modifier.fillMaxWidth(),
         horizontalAlignment = CenterHorizontally
@@ -36,8 +39,14 @@ internal fun ProfileHeader(user: AuthenticatedUserDTO? = null) {
         )
         ToolkitSpaceHeight(ToolkitSpacingSm)
 
-        ToolkitText(text = user?.name ?: stringResource(R.string.profile_screen_user), style = ToolkitTextStyle.TitleLarge)
-        user?.email?.let { ToolkitText(text = it, style = ToolkitTextStyle.TitleSmall) }
+        if (user?.isAuthenticated().orFalse()) {
+            ToolkitText(text = user?.name.orEmpty(), style = ToolkitTextStyle.TitleLarge)
+            ToolkitText(text = user?.email.orEmpty(), style = ToolkitTextStyle.TitleSmall)
+        } else {
+            ToolkitText(text = stringResource(R.string.profile_screen_user_not_authenticated), style = ToolkitTextStyle.TitleLarge)
+            ToolkitSpaceHeight()
+            ToolkitBaseButton(onClick = onClickLogin, text = stringResource(R.string.profile_btn_login))
+        }
 
         ToolkitSpaceHeight()
         HorizontalDivider()
@@ -50,12 +59,15 @@ internal fun ProfileHeader(user: AuthenticatedUserDTO? = null) {
 private fun Preview() {
     AppTheme {
         ToolkitBackground {
-            ProfileHeader(
-                AuthenticatedUserDTO(
-                    name = "Valdenir Severino",
-                    email = "vald3nir@gmail.com"
+            ToolkitColumn {
+                ProfileHeader(
+                    AuthenticatedUserDTO(
+                        name = "Valdenir Severino",
+                        email = "vald3nir@gmail.com"
+                    )
                 )
-            )
+                ProfileHeader()
+            }
         }
     }
 }

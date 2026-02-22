@@ -6,4 +6,6 @@ data class AuthenticatedUserDTO(
     val name: String? = null,
     val email: String? = null,
     val photoUrl: String? = null,
-)
+) {
+    fun isAuthenticated() = id != null && name != null && email != null
+}

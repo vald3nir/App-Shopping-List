@@ -24,7 +24,9 @@ import com.vald3nir.toolkit.auth.presentation.setupAuthRoute
 internal fun AppRouter(modifier: Modifier = Modifier, navController: NavHostController) {
     NavHost(navController = navController, startDestination = HomeRoute, modifier = modifier) {
 
-        setupProfileRoute()
+        setupProfileRoute(redirectToAuth = {
+            navController.navigateToAuth()
+        })
 
         setupHomeRoute(
             redirectToListDetail = { shoppingListID ->
@@ -36,9 +38,6 @@ internal fun AppRouter(modifier: Modifier = Modifier, navController: NavHostCont
             redirectToProfile = {
                 navController.navigateToProfile()
             },
-            redirectToAuth = {
-                navController.navigateToAuth()
-            }
         )
 
         setupAuthRoute(

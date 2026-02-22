@@ -23,7 +23,7 @@ import com.vald3nir.toolkit.designsystem.components.defaultSpace
 import com.vald3nir.toolkit.designsystem.components.dividers.ToolkitDivider
 import com.vald3nir.toolkit.designsystem.components.icons.ToolkitIcon
 import com.vald3nir.toolkit.designsystem.components.icons.ToolkitIconCatalog
-import com.vald3nir.toolkit.designsystem.components.switches.ToolkitSwitch
+import com.vald3nir.toolkit.designsystem.components.selectors.ToolkitSwitch
 import com.vald3nir.toolkit.designsystem.components.texts.ToolkitText
 import com.vald3nir.toolkit.designsystem.components.texts.ToolkitTextStyle
 import com.vald3nir.toolkit.designsystem.theme.ToolkitTheme

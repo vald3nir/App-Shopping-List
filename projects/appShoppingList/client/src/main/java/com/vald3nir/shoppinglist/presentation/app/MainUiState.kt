@@ -1,27 +1,25 @@
 package com.vald3nir.shoppinglist.presentation.app
 
-import com.vald3nir.shoppinglist.core.domain.dto.AppThemeDTO
-import com.vald3nir.toolkit.designsystem.theme.domain.ThemeBrandEnum
+import com.vald3nir.toolkit.designsystem.theme.domain.ThemeBrandEnum2
 import com.vald3nir.toolkit.designsystem.theme.domain.UIThemeConfigEnum
+import com.vald3nir.toolkit.themas.domain.AppThemeDTO
 
 internal sealed interface MainUiState {
 
     data object Loading : MainUiState
 
-    data class Success(val userData: AppThemeDTO) : MainUiState {
+    data class Success(val appTheme: AppThemeDTO) : MainUiState {
 
-        override val shouldDisableDynamicTheming = !userData.useDynamicColor
+        override val shouldDisableDynamicTheming = !appTheme.useDynamicColor
 
-        override val shouldUseAndroidTheme: Boolean = when (userData.themeBrand) {
-            ThemeBrandEnum.DEFAULT -> false
-            ThemeBrandEnum.ANDROID -> true
-        }
+        override val themaEnum: ThemeBrandEnum2 = appTheme.themeBrand ?: ThemeBrandEnum2.BLUE
 
         override fun shouldUseDarkTheme(isSystemDarkTheme: Boolean) =
-            when (userData.themeConfigEnum) {
+            when (appTheme.themeConfigEnum) {
                 UIThemeConfigEnum.FOLLOW_SYSTEM -> isSystemDarkTheme
                 UIThemeConfigEnum.LIGHT -> false
                 UIThemeConfigEnum.DARK -> true
+                else -> true
             }
     }
 
@@ -38,7 +36,8 @@ internal sealed interface MainUiState {
     /**
      * Returns `true` if the Android theme should be used.
      */
-    val shouldUseAndroidTheme: Boolean get() = false
+//    val shouldUseAndroidTheme: Boolean get() = false
+    val themaEnum: ThemeBrandEnum2 get() = ThemeBrandEnum2.BLUE
 
     /**
      * Returns `true` if dark theme should be used.

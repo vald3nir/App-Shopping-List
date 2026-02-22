@@ -4,10 +4,13 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.ProvideTextStyle
+import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.material3.contentColorFor
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import com.vald3nir.toolkit.designsystem.annotations.ThemePreviews
+import com.vald3nir.toolkit.designsystem.theme.ToolkitTheme
 
 @Composable
 fun ToolkitTag(
@@ -42,4 +45,14 @@ fun ToolkitTag(
 private object ToolkitTagDefaults {
     const val UNFOLLOWED_TOPIC_TAG_CONTAINER_ALPHA = 0.5f
     const val DISABLED_TOPIC_TAG_CONTAINER_ALPHA = 0.12f
+}
+
+@ThemePreviews
+@Composable
+private fun Preview() {
+    ToolkitTheme {
+        ToolkitTag(followed = true, onClick = {}) {
+            Text("Topic".uppercase())
+        }
+    }
 }

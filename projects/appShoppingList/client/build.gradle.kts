@@ -15,7 +15,7 @@ plugins {
 }
 
 // todo replace for your .env file path
-val parameters = AppEnvironmentParameters.from(envFilePath = "D:\\GitHub\\environments\\shopping-list.env")
+val parameters = AppEnvironmentParameters.from(envFilePath = "D:\\Documents\\GitHub\\environments\\shopping-list.env")
 
 
 android {
@@ -23,7 +23,7 @@ android {
     defaultConfig {
         applicationId = namespace
         versionCode = 11
-        versionName = "2026.2.1"
+        versionName = "2026.3.0"
         buildConfigField("String", "APP_PRIVACY_POLICY_URL", parameters.appPrivacyPolicyURL)
         buildConfigField("String", "APP_TERMS_USE_URL", parameters.termsUseURL)
         buildConfigField("String", "WEB_GOOGLE_CLIENT_ID", parameters.webGoogleClientID)

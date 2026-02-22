@@ -88,12 +88,13 @@
     <string name="item_details_keep_on_card_question">Deseja adicionar o item ao carrinho?</string>
 
     <!-- Feature: Profile -->
-    <string name="profile_screen_user">Usuário</string>
+    <string name="profile_screen_user_not_authenticated">Usuário não autenticado</string>
     <string name="profile_screen_title">Perfil</string>
+    <string name="profile_screen_btn_alter_theme">Alterar tema</string>
+    <string name="profile_screen_app_version">Versão do App</string>
+    <string name="profile_btn_login">Fazer login</string>
     <string name="profile_dialog_logout_title">Fazer Logout</string>
     <string name="profile_dialog_logout_description">Ao sair da conta, suas listas serão removidas do dispositivo e não serão salvas na nuvem.</string>
-    <string name="profile_screen_app_version">Versão do App</string>
-
 
     <string name="feature_settings_top_app_bar_action_icon_description">Settings</string>
     <string name="feature_settings_top_app_bar_navigation_icon_description">Search</string>
@@ -106,7 +107,7 @@
     <string name="feature_settings_theme">Theme</string>
     <string name="feature_settings_brand_default">Default</string>
     <string name="feature_settings_brand_android">Android</string>
-    <string name="feature_settings_dark_mode_preference">Dark mode preference</string>
+    <string name="select_theme_preferences">Dark mode preference</string>
     <string name="feature_settings_dark_mode_config_system_default">System default</string>
     <string name="feature_settings_dark_mode_config_light">Light</string>
     <string name="feature_settings_dark_mode_config_dark">Dark</string>

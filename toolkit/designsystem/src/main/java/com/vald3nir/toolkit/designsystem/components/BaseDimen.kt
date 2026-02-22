@@ -18,7 +18,7 @@ val ToolkitSpacingXl = 32.dp
 fun ToolkitSpaceHeight(height: Dp = ToolkitSpacingMd) = Spacer(modifier = Modifier.height(height))
 
 @Composable
-fun ToolkitSpaceWidth(height: Dp = ToolkitSpacingMd) = Spacer(modifier = Modifier.width(height))
+fun ToolkitSpaceWidth(width: Dp = ToolkitSpacingMd) = Spacer(modifier = Modifier.width(width))
 
 // todo remover dessa linha para baixo
 

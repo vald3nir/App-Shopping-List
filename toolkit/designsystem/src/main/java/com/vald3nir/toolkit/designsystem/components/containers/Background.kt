@@ -2,6 +2,7 @@ package com.vald3nir.toolkit.designsystem.components.containers
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.size
 import androidx.compose.material3.LocalAbsoluteTonalElevation
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
@@ -15,6 +16,8 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import com.vald3nir.toolkit.designsystem.annotations.ThemePreviews
+import com.vald3nir.toolkit.designsystem.theme.ToolkitTheme
 import com.vald3nir.toolkit.designsystem.theme.providers.GradientColors
 import com.vald3nir.toolkit.designsystem.theme.providers.LocalBackgroundTheme
 import com.vald3nir.toolkit.designsystem.theme.providers.LocalGradientColors
@@ -76,5 +79,53 @@ fun ToolkitGradientBackground(modifier: Modifier = Modifier, gradientColors: Gra
         ) {
             content()
         }
+    }
+}
+
+@ThemePreviews
+@Composable
+private fun BackgroundDefault() {
+    ToolkitTheme(disableDynamicTheming = true) {
+        ToolkitBackground(Modifier.size(100.dp), content = {})
+    }
+}
+
+@ThemePreviews
+@Composable
+private fun BackgroundDynamic() {
+    ToolkitTheme(disableDynamicTheming = false) {
+        ToolkitBackground(Modifier.size(100.dp), content = {})
+    }
+}
+
+@ThemePreviews
+@Composable
+private fun BackgroundAndroid() {
+    ToolkitTheme(androidTheme = true) {
+        ToolkitBackground(Modifier.size(100.dp), content = {})
+    }
+}
+
+@ThemePreviews
+@Composable
+private fun GradientBackgroundDefault() {
+    ToolkitTheme(disableDynamicTheming = true) {
+        ToolkitGradientBackground(Modifier.size(100.dp), content = {})
+    }
+}
+
+@ThemePreviews
+@Composable
+private fun GradientBackgroundDynamic() {
+    ToolkitTheme(disableDynamicTheming = false) {
+        ToolkitGradientBackground(Modifier.size(100.dp), content = {})
+    }
+}
+
+@ThemePreviews
+@Composable
+private fun GradientBackgroundAndroid() {
+    ToolkitTheme(androidTheme = true) {
+        ToolkitGradientBackground(Modifier.size(100.dp), content = {})
     }
 }

@@ -15,8 +15,8 @@ import com.vald3nir.shoppinglist.core.ui.thema.AppTheme
 import com.vald3nir.toolkit.designsystem.annotations.ThemePreviews
 import com.vald3nir.toolkit.designsystem.components.containers.ToolkitBackground
 import com.vald3nir.toolkit.designsystem.components.icons.ToolkitIconCatalog
-import com.vald3nir.toolkit.designsystem.components.tabs.ToolkitTab
-import com.vald3nir.toolkit.designsystem.components.tabs.ToolkitTabRow
+import com.vald3nir.toolkit.designsystem.components.selectors.ToolkitTab
+import com.vald3nir.toolkit.designsystem.components.selectors.ToolkitTabRow
 
 @Composable
 internal fun ListDetailsFilter(

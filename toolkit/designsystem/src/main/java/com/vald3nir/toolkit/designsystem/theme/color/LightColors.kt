@@ -4,10 +4,45 @@ import androidx.annotation.VisibleForTesting
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.ui.graphics.Color
 import com.vald3nir.toolkit.designsystem.theme.providers.BackgroundTheme
+import com.vald3nir.toolkit.designsystem.theme.providers.Blue10
+import com.vald3nir.toolkit.designsystem.theme.providers.Blue40
+import com.vald3nir.toolkit.designsystem.theme.providers.Blue90
+import com.vald3nir.toolkit.designsystem.theme.providers.DarkGreen10
+import com.vald3nir.toolkit.designsystem.theme.providers.DarkGreen40
+import com.vald3nir.toolkit.designsystem.theme.providers.DarkGreen90
+import com.vald3nir.toolkit.designsystem.theme.providers.DarkGreenGray10
+import com.vald3nir.toolkit.designsystem.theme.providers.DarkGreenGray20
+import com.vald3nir.toolkit.designsystem.theme.providers.DarkGreenGray95
+import com.vald3nir.toolkit.designsystem.theme.providers.DarkGreenGray99
+import com.vald3nir.toolkit.designsystem.theme.providers.DarkPurpleGray10
+import com.vald3nir.toolkit.designsystem.theme.providers.DarkPurpleGray20
+import com.vald3nir.toolkit.designsystem.theme.providers.DarkPurpleGray95
+import com.vald3nir.toolkit.designsystem.theme.providers.DarkPurpleGray99
 import com.vald3nir.toolkit.designsystem.theme.providers.GradientColors
+import com.vald3nir.toolkit.designsystem.theme.providers.Green10
+import com.vald3nir.toolkit.designsystem.theme.providers.Green40
+import com.vald3nir.toolkit.designsystem.theme.providers.Green90
+import com.vald3nir.toolkit.designsystem.theme.providers.GreenGray30
+import com.vald3nir.toolkit.designsystem.theme.providers.GreenGray50
+import com.vald3nir.toolkit.designsystem.theme.providers.GreenGray90
+import com.vald3nir.toolkit.designsystem.theme.providers.Orange10
+import com.vald3nir.toolkit.designsystem.theme.providers.Orange40
+import com.vald3nir.toolkit.designsystem.theme.providers.Orange90
+import com.vald3nir.toolkit.designsystem.theme.providers.Purple10
+import com.vald3nir.toolkit.designsystem.theme.providers.Purple40
+import com.vald3nir.toolkit.designsystem.theme.providers.Purple90
+import com.vald3nir.toolkit.designsystem.theme.providers.PurpleGray30
+import com.vald3nir.toolkit.designsystem.theme.providers.PurpleGray50
+import com.vald3nir.toolkit.designsystem.theme.providers.PurpleGray90
+import com.vald3nir.toolkit.designsystem.theme.providers.Red10
+import com.vald3nir.toolkit.designsystem.theme.providers.Red40
+import com.vald3nir.toolkit.designsystem.theme.providers.Red90
+import com.vald3nir.toolkit.designsystem.theme.providers.Teal10
+import com.vald3nir.toolkit.designsystem.theme.providers.Teal40
+import com.vald3nir.toolkit.designsystem.theme.providers.Teal90
 
-val LightAndroidGradientColors = GradientColors(container = DarkGreenGray95)
-val LightAndroidBackgroundTheme = BackgroundTheme(color = DarkGreenGray95)
+
+
 
 @VisibleForTesting
 val LightDefaultColorScheme = lightColorScheme(

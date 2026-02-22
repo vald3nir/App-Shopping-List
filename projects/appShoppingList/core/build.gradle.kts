@@ -18,6 +18,7 @@ dependencies {
     api(project(":toolkit:core"))
     api(project(":toolkit:designsystem"))
     api(project(":toolkit:libs:auth"))
+    api(project(":toolkit:libs:themas"))
 }
 
 tasks.withType<Test> {

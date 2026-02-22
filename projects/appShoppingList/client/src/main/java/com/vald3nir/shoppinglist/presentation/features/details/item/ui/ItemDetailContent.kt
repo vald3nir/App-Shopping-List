@@ -29,7 +29,7 @@ import com.vald3nir.toolkit.designsystem.components.icons.ToolkitIconCatalog
 import com.vald3nir.toolkit.designsystem.components.inputs.ToolkitAutoCompleteInput
 import com.vald3nir.toolkit.designsystem.components.inputs.ToolkitInputInteger
 import com.vald3nir.toolkit.designsystem.components.inputs.ToolkitInputMonetary
-import com.vald3nir.toolkit.designsystem.components.switches.ToolkitSwitch
+import com.vald3nir.toolkit.designsystem.components.selectors.ToolkitSwitch
 import com.vald3nir.toolkit.designsystem.components.texts.ToolkitText
 import com.vald3nir.toolkit.designsystem.components.texts.ToolkitTextStyle
 import com.vald3nir.toolkit.designsystem.templates.ToolkitColumn

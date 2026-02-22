@@ -2,14 +2,12 @@ package com.vald3nir.shoppinglist.presentation.features.profile
 
 import androidx.lifecycle.viewModelScope
 import com.vald3nir.shoppinglist.core.repository.ShoppingListRepository
-import com.vald3nir.shoppinglist.core.repository.UserDataRepository
 import com.vald3nir.shoppinglist.domain.ProfileScreenDTO
 import com.vald3nir.toolkit.auth.repository.AuthenticatedUserRepository
 import com.vald3nir.toolkit.core.baseclasses.BaseUiState
 import com.vald3nir.toolkit.core.baseclasses.BaseViewModel
 import com.vald3nir.toolkit.core.baseclasses.BaseViewModelParameters
-import com.vald3nir.toolkit.designsystem.theme.domain.ThemeBrandEnum
-import com.vald3nir.toolkit.designsystem.theme.domain.UIThemeConfigEnum
+import com.vald3nir.toolkit.themas.repository.ThemaRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
@@ -17,13 +15,12 @@ import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.flow.stateIn
-import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 internal class ProfileViewModel @Inject constructor(
     private val authenticatedUserRepository: AuthenticatedUserRepository,
-    private val userDataRepository: UserDataRepository,
+    private val themaRepository: ThemaRepository,
     private val repository: ShoppingListRepository,
     parameters: BaseViewModelParameters
 ) : BaseViewModel(parameters) {
@@ -31,7 +28,7 @@ internal class ProfileViewModel @Inject constructor(
     val profileDataFlow: StateFlow<ProfileScreenDTO> by lazy {
         combine(
             authenticatedUserRepository.loadAuthenticatedUser(),
-            userDataRepository.userData
+            themaRepository.appThemaFlow
         ) { user, thema ->
             ProfileScreenDTO(
                 user = user,
@@ -61,23 +58,5 @@ internal class ProfileViewModel @Inject constructor(
                 navigateBack()
             }
         )
-    }
-
-    fun updateThemeBrand(themeBrand: ThemeBrandEnum) {
-        viewModelScope.launch {
-            userDataRepository.setThemeBrand(themeBrand)
-        }
-    }
-
-    fun updateDarkThemeConfig(uIThemeConfigEnum: UIThemeConfigEnum) {
-        viewModelScope.launch {
-            userDataRepository.setDarkThemeConfig(uIThemeConfigEnum)
-        }
-    }
-
-    fun updateDynamicColorPreference(useDynamicColor: Boolean) {
-        viewModelScope.launch {
-            userDataRepository.setDynamicColorPreference(useDynamicColor)
-        }
     }
 }

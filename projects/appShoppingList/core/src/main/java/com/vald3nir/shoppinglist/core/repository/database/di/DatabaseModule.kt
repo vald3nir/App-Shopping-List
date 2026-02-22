@@ -2,7 +2,6 @@ package com.vald3nir.shoppinglist.core.repository.database.di
 
 import android.content.Context
 import androidx.room.Room
-import com.vald3nir.shoppinglist.core.repository.UserPreferencesDataSource
 import com.vald3nir.shoppinglist.core.repository.database.AppDatabase
 import dagger.Module
 import dagger.Provides
@@ -14,10 +13,6 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 internal object DatabaseModule {
-
-    @Provides
-    @Singleton
-    fun bindsUserPreferencesDataSource(@ApplicationContext context: Context) = UserPreferencesDataSource(context)
 
     @Provides
     @Singleton

@@ -18,6 +18,7 @@ import com.vald3nir.shoppinglist.core.ui.thema.AppTheme
 import com.vald3nir.shoppinglist.presentation.features.appscreen.AppScreen
 import com.vald3nir.toolkit.core.baseclasses.BaseActivity
 import com.vald3nir.toolkit.core.utils.extensions.isSystemInDarkTheme
+import com.vald3nir.toolkit.designsystem.theme.domain.ThemeBrandEnum2
 import com.vald3nir.toolkit.designsystem.theme.domain.ThemeSettingsDTO
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.combine
@@ -40,8 +41,8 @@ class MainActivity : BaseActivity() {
         // This allows us to react to dark/light mode changes.
         var themeSettings by mutableStateOf(
             ThemeSettingsDTO(
+                themaBrandEnum = MainUiState.Loading.themaEnum,
                 darkTheme = resources.configuration.isSystemInDarkTheme,
-                androidTheme = MainUiState.Loading.shouldUseAndroidTheme,
                 disableDynamicTheming = MainUiState.Loading.shouldDisableDynamicTheming,
             ),
         )
@@ -54,8 +55,8 @@ class MainActivity : BaseActivity() {
                     viewModel.uiState,
                 ) { systemDark, uiState ->
                     ThemeSettingsDTO(
+                        themaBrandEnum = uiState.themaEnum,
                         darkTheme = uiState.shouldUseDarkTheme(systemDark),
-                        androidTheme = uiState.shouldUseAndroidTheme,
                         disableDynamicTheming = uiState.shouldDisableDynamicTheming,
                     )
                 }
@@ -81,8 +82,8 @@ class MainActivity : BaseActivity() {
 
         setContent {
             AppTheme(
+                themeBrandEnum = themeSettings.themaBrandEnum,
                 darkTheme = themeSettings.darkTheme,
-                androidTheme = themeSettings.androidTheme,
                 disableDynamicTheming = themeSettings.disableDynamicTheming,
             ) {
                 AppScreen()

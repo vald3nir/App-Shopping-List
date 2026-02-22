@@ -9,8 +9,6 @@ import com.vald3nir.shoppinglist.core.repository.ProductsRepository
 import com.vald3nir.shoppinglist.core.repository.ProductsRepositoryImpl
 import com.vald3nir.shoppinglist.core.repository.ShoppingListRepository
 import com.vald3nir.shoppinglist.core.repository.ShoppingListRepositoryImpl
-import com.vald3nir.shoppinglist.core.repository.UserDataRepository
-import com.vald3nir.shoppinglist.core.repository.UserDataRepositoryImpl
 import com.vald3nir.toolkit.auth.repository.AuthenticatedUserRepository
 import dagger.Binds
 import dagger.Module
@@ -22,8 +20,7 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 internal abstract class RepositoryModule {
 
-    @Binds
-    internal abstract fun bindsUserDataRepository(impl: UserDataRepositoryImpl): UserDataRepository
+
 
     @Binds
     @Singleton

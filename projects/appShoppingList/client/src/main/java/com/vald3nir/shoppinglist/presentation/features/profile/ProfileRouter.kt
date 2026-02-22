@@ -12,6 +12,6 @@ fun NavController.navigateToProfile() {
     this.navigate(ProfileRouter)
 }
 
-internal fun NavGraphBuilder.setupProfileRoute() {
-    composable<ProfileRouter> { ProfileScreen() }
+internal fun NavGraphBuilder.setupProfileRoute(redirectToAuth: () -> Unit) {
+    composable<ProfileRouter> { ProfileScreen(redirectToAuth = redirectToAuth) }
 }
