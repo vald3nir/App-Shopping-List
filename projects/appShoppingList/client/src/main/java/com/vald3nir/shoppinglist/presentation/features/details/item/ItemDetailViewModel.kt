@@ -1,14 +1,13 @@
 package com.vald3nir.shoppinglist.presentation.features.details.item
 
 import androidx.lifecycle.viewModelScope
-import com.vald3nir.shoppinglist.domain.ItemListDetailDTO
 import com.vald3nir.shoppinglist.core.domain.dto.ItemShoppingListDTO
 import com.vald3nir.shoppinglist.core.repository.CategoryRepository
 import com.vald3nir.shoppinglist.core.repository.ItemShoppingListRepository
 import com.vald3nir.shoppinglist.core.repository.ProductsRepository
-import com.vald3nir.toolkit.core.baseclasses.BaseUiState
+import com.vald3nir.shoppinglist.domain.ItemListDetailDTO
 import com.vald3nir.toolkit.core.baseclasses.BaseViewModel
-import com.vald3nir.toolkit.core.services.sync.monitors.NetworkMonitor
+import com.vald3nir.toolkit.core.baseclasses.BaseViewModelParameters
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -25,8 +24,8 @@ internal class ItemDetailViewModel @Inject constructor(
     private val itemShoppingListRepository: ItemShoppingListRepository,
     private val productsRepository: ProductsRepository,
     private val categoryRepository: CategoryRepository,
-    networkMonitor: NetworkMonitor,
-) : BaseViewModel(networkMonitor) {
+    parameters: BaseViewModelParameters
+) : BaseViewModel(parameters) {
 
     private val itemIdFlow = MutableStateFlow<Long?>(null)
     fun loadItemShoppingList(itemId: Long?) {
@@ -61,7 +60,7 @@ internal class ItemDetailViewModel @Inject constructor(
                 itemShoppingListRepository.updateItem(item)
             },
             onSuccessEvent = {
-                notifyState(BaseUiState.CloseState())
+                navigateBack()
             }
         )
     }
@@ -72,7 +71,7 @@ internal class ItemDetailViewModel @Inject constructor(
                 itemShoppingListRepository.removeItem(itemId)
             },
             onSuccessEvent = {
-                notifyState(BaseUiState.CloseState())
+                navigateBack()
             }
         )
     }

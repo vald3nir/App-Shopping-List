@@ -7,7 +7,7 @@ import com.vald3nir.shoppinglist.domain.ProfileScreenDTO
 import com.vald3nir.toolkit.auth.repository.AuthenticatedUserRepository
 import com.vald3nir.toolkit.core.baseclasses.BaseUiState
 import com.vald3nir.toolkit.core.baseclasses.BaseViewModel
-import com.vald3nir.toolkit.core.services.sync.monitors.NetworkMonitor
+import com.vald3nir.toolkit.core.baseclasses.BaseViewModelParameters
 import com.vald3nir.toolkit.designsystem.theme.domain.ThemeBrandEnum
 import com.vald3nir.toolkit.designsystem.theme.domain.UIThemeConfigEnum
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -25,8 +25,8 @@ internal class ProfileViewModel @Inject constructor(
     private val authenticatedUserRepository: AuthenticatedUserRepository,
     private val userDataRepository: UserDataRepository,
     private val repository: ShoppingListRepository,
-    networkMonitor: NetworkMonitor,
-) : BaseViewModel(networkMonitor) {
+    parameters: BaseViewModelParameters
+) : BaseViewModel(parameters) {
 
     val profileDataFlow: StateFlow<ProfileScreenDTO> by lazy {
         combine(
@@ -58,7 +58,7 @@ internal class ProfileViewModel @Inject constructor(
                 repository.deleteLists()
             },
             onSuccessEvent = {
-                notifyState(BaseUiState.CloseState())
+                navigateBack()
             }
         )
     }

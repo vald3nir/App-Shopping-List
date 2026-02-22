@@ -4,9 +4,8 @@ import androidx.lifecycle.viewModelScope
 import com.vald3nir.shoppinglist.core.domain.dto.ItemShoppingListDTO
 import com.vald3nir.shoppinglist.core.repository.ItemShoppingListRepository
 import com.vald3nir.shoppinglist.core.repository.ProductsRepository
-import com.vald3nir.toolkit.core.baseclasses.BaseUiState
 import com.vald3nir.toolkit.core.baseclasses.BaseViewModel
-import com.vald3nir.toolkit.core.services.sync.monitors.NetworkMonitor
+import com.vald3nir.toolkit.core.baseclasses.BaseViewModelParameters
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
@@ -16,9 +15,9 @@ import javax.inject.Inject
 @HiltViewModel
 internal class CreateItemListViewModel @Inject constructor(
     private val itemShoppingListRepository: ItemShoppingListRepository,
-    private val productsRepository: ProductsRepository,
-    private val networkMonitor: NetworkMonitor,
-) : BaseViewModel(networkMonitor) {
+    productsRepository: ProductsRepository,
+    parameters: BaseViewModelParameters
+) : BaseViewModel(parameters) {
 
     val productNames: StateFlow<List<String>> = productsRepository.getProductNames().stateIn(
         scope = viewModelScope,
@@ -26,13 +25,13 @@ internal class CreateItemListViewModel @Inject constructor(
         initialValue = emptyList()
     )
 
-    fun insertNewItemShoppingList(item: ItemShoppingListDTO) {
+    fun insertNewItemList(item: ItemShoppingListDTO) {
         safeLaunch(
             action = {
-                itemShoppingListRepository.createNewShoppingListItem(item)
+                itemShoppingListRepository.insertNewItemList(item)
             },
             onSuccessEvent = {
-                notifyState(BaseUiState.CloseState())
+                navigateBack()
             }
         )
     }

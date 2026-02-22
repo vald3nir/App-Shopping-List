@@ -16,13 +16,12 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
 import com.vald3nir.shoppinglist.core.domain.dto.ItemShoppingListDTO
+import com.vald3nir.shoppinglist.core.ui.thema.AppTheme
 import com.vald3nir.shoppinglist.domain.providers.ItemsShoppingListProvider
-import com.vald3nir.shoppinglist.presentation.theme.AppTheme
 import com.vald3nir.toolkit.designsystem.annotations.ThemePreviews
 import com.vald3nir.toolkit.designsystem.components.DefaultSpaceWidth
-import com.vald3nir.toolkit.designsystem.components.HalfSpaceWidth
+import com.vald3nir.toolkit.designsystem.components.ToolkitSpacingMd
 import com.vald3nir.toolkit.designsystem.components.containers.ToolkitBackground
-import com.vald3nir.toolkit.designsystem.components.defaultSpace
 import com.vald3nir.toolkit.designsystem.components.dividers.ToolkitDivider
 import com.vald3nir.toolkit.designsystem.components.icons.ToolkitIcon
 import com.vald3nir.toolkit.designsystem.components.icons.ToolkitIconCatalog
@@ -41,10 +40,9 @@ fun CreateShoppingListRow(
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(vertical = defaultSpace),
+                .padding(vertical = ToolkitSpacingMd),
             verticalAlignment = Alignment.CenterVertically
         ) {
-            HalfSpaceWidth()
             if (item.iconURL.isNullOrEmpty()) {
                 ToolkitIcon(
                     modifier = Modifier.size(28.dp),
@@ -58,7 +56,7 @@ fun CreateShoppingListRow(
             }
             DefaultSpaceWidth()
             Column(modifier = Modifier.weight(1f)) {
-                ToolkitText(text = "${item.product} - ${item.quantity} Uni.", style = ToolkitTextStyle.TitleMedium)
+                ToolkitText(text = item.description(), style = ToolkitTextStyle.TitleMedium)
                 item.category?.let { ToolkitText(text = it, style = ToolkitTextStyle.LabelLarge) }
             }
             ToolkitIcon(
@@ -75,10 +73,7 @@ fun CreateShoppingListRow(
 
 @ThemePreviews
 @Composable
-private fun Preview(
-    @PreviewParameter(ItemsShoppingListProvider::class)
-    items: List<ItemShoppingListDTO>,
-) {
+private fun Preview(@PreviewParameter(ItemsShoppingListProvider::class) items: List<ItemShoppingListDTO>) {
     AppTheme {
         ToolkitBackground {
             LazyColumn {
@@ -86,7 +81,7 @@ private fun Preview(
                     CreateShoppingListRow(
                         modifier = Modifier
                             .fillMaxWidth()
-                            .padding(horizontal = defaultSpace),
+                            .padding(horizontal = ToolkitSpacingMd),
                         item = item,
                         showDivider = index != items.lastIndex,
                         onRemove = {},

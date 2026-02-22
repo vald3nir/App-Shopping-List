@@ -15,8 +15,7 @@ fun NavController.navigateToListDetails(shoppingListID: Long?) {
 
 internal fun NavGraphBuilder.setupListDetailsRoute(
     onClickAddData: (shoppingListID: Long?) -> Unit,
-    onClickItemDetail: (itemId: Long?) -> Unit,
-    onBackPressed: () -> Unit
+    onClickItemDetail: (itemId: Long?) -> Unit
 ) {
     composable<ListDetailsRouter> { backStackEntry ->
         val route = backStackEntry.toRoute<ListDetailsRouter>()
@@ -24,7 +23,6 @@ internal fun NavGraphBuilder.setupListDetailsRoute(
             shoppingListID = route.shoppingListID,
             onClickAddData = onClickAddData,
             onClickItemDetail = onClickItemDetail,
-            onBackPressed = onBackPressed
         )
     }
 }

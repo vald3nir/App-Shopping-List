@@ -13,12 +13,9 @@ fun NavController.navigateToCreateItemList(shoppingListID: Long?) {
     this.navigate(CreateItemListRouter(shoppingListID = shoppingListID))
 }
 
-internal fun NavGraphBuilder.setupCreateItemListRoute(onBackPressed: () -> Unit) {
+internal fun NavGraphBuilder.setupCreateItemListRoute() {
     composable<CreateItemListRouter> { backStackEntry ->
         val route = backStackEntry.toRoute<CreateItemListRouter>()
-        CreateItemListScreen(
-            shoppingListID = route.shoppingListID,
-            onBackPressed = onBackPressed
-        )
+        CreateItemListScreen(shoppingListID = route.shoppingListID)
     }
 }

@@ -22,8 +22,8 @@ android {
     namespace = "com.vald3nir.shoppinglist"
     defaultConfig {
         applicationId = namespace
-        versionCode = 9
-        versionName = "2026.1.0"
+        versionCode = 11
+        versionName = "2026.2.1"
         buildConfigField("String", "APP_PRIVACY_POLICY_URL", parameters.appPrivacyPolicyURL)
         buildConfigField("String", "APP_TERMS_USE_URL", parameters.termsUseURL)
         buildConfigField("String", "WEB_GOOGLE_CLIENT_ID", parameters.webGoogleClientID)
@@ -46,4 +46,8 @@ baselineProfile {
     automaticGenerationDuringBuild = false
     // Make use of Dex Layout Optimizations via Startup Profiles
     dexLayoutOptimization = true
+}
+
+tasks.withType<Test> {
+    useJUnitPlatform()
 }

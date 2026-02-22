@@ -6,15 +6,11 @@ import com.vald3nir.shoppinglist.core.repository.database.dao.SyncAdminDao
 import com.vald3nir.shoppinglist.core.repository.database.entities.CategoryEntity
 import com.vald3nir.shoppinglist.core.repository.database.entities.ProductEntity
 import com.vald3nir.shoppinglist.core.repository.database.entities.SyncAdminEntity
-import com.vald3nir.shoppinglist.core.repository.sync.model.CategorySyncModel
-import com.vald3nir.shoppinglist.core.repository.sync.model.DbAdminSyncModel
-import com.vald3nir.shoppinglist.core.repository.sync.model.ProductSyncModel
+import com.vald3nir.shoppinglist.core.repository.sync.datasources.ProductsCloudDataSource
 import com.vald3nir.toolkit.core.services.analytics.AnalyticsHelper
 import com.vald3nir.toolkit.core.utils.extensions.getCurrentDate
 import com.vald3nir.toolkit.core.utils.extensions.orZero
 import com.vald3nir.toolkit.core.utils.security.generateUUID
-import io.github.jan.supabase.SupabaseClient
-import io.github.jan.supabase.postgrest.from
 import javax.inject.Inject
 
 interface SyncProductsRepository {
@@ -25,17 +21,17 @@ interface SyncProductsRepository {
 
 internal class SyncProductsRepositoryImpl @Inject constructor(
     private val analyticsHelper: AnalyticsHelper,
-    private val supabaseClient: SupabaseClient,
     private val syncAdminDao: SyncAdminDao,
     private val productsDao: ProductsDao,
     private val categoryDao: CategoryDao,
+    private val productsCloudDataSource: ProductsCloudDataSource
 ) : SyncProductsRepository {
 
     private var flagDownloadProductTable = false
     private var flagDownloadCategoriesTable = false
 
     override suspend fun checkDbSyncStatus() {
-        val syncAdminCloud = supabaseClient.from("db_admin").select().decodeSingle<DbAdminSyncModel>()
+        val syncAdminCloud = productsCloudDataSource.getDbAdmin()
         val syncAdminLocal = syncAdminDao.getSyncAdmin()
         val cloudProdVer = syncAdminCloud.productsVersion.orZero()
         val cloudCatVer = syncAdminCloud.categoriesVersion.orZero()
@@ -50,7 +46,7 @@ internal class SyncProductsRepositoryImpl @Inject constructor(
 
     override suspend fun syncProducts() {
         if (flagDownloadProductTable) {
-            val products = supabaseClient.from("product").select().decodeList<ProductSyncModel>()
+            val products = productsCloudDataSource.getProducts()
             analyticsHelper.onLog("Download ${products.size} products")
             productsDao.clearAndInsert(products.map {
                 ProductEntity(
@@ -66,7 +62,7 @@ internal class SyncProductsRepositoryImpl @Inject constructor(
 
     override suspend fun syncCategories() {
         if (flagDownloadCategoriesTable) {
-            val categories = supabaseClient.from("category").select().decodeList<CategorySyncModel>()
+            val categories = productsCloudDataSource.getCategories()
             analyticsHelper.onLog("Download ${categories.size} categories")
             categoryDao.clearAndInsert(categories.map {
                 CategoryEntity(

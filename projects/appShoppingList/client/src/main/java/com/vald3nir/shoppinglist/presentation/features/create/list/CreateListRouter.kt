@@ -12,11 +12,8 @@ fun NavController.navigateToCreateList() {
     this.navigate(CreateListRoute)
 }
 
-fun NavGraphBuilder.setupCreateListRoute(
-    onClickAddData: (shoppingListID: Long?) -> Unit,
-    onBackPressed: () -> Unit
-) {
+fun NavGraphBuilder.setupCreateListRoute(onClickAddData: (shoppingListID: Long?) -> Unit) {
     composable<CreateListRoute> {
-        CreateListScreen(onClickAddData = onClickAddData, onBackPressed = onBackPressed)
+        CreateListScreen(onClickAddData = onClickAddData)
     }
 }

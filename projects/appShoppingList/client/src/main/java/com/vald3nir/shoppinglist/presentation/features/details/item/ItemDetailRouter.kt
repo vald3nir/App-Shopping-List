@@ -13,12 +13,9 @@ fun NavController.navigateToItemDetail(itemId: Long?) {
     this.navigate(ItemDetailRouter(itemId = itemId))
 }
 
-internal fun NavGraphBuilder.setupItemDetailRoute(onBackPressed: () -> Unit) {
+internal fun NavGraphBuilder.setupItemDetailRoute() {
     composable<ItemDetailRouter> { backStackEntry ->
         val route = backStackEntry.toRoute<ItemDetailRouter>()
-        ItemDetailScreen(
-            itemId = route.itemId,
-            onBackPressed = onBackPressed
-        )
+        ItemDetailScreen(itemId = route.itemId)
     }
 }

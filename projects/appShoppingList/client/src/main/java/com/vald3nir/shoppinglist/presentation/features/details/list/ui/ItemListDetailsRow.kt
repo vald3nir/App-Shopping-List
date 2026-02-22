@@ -15,8 +15,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
 import com.vald3nir.shoppinglist.core.domain.dto.ItemShoppingListDTO
+import com.vald3nir.shoppinglist.core.ui.thema.AppTheme
 import com.vald3nir.shoppinglist.domain.providers.ItemsShoppingListProvider
-import com.vald3nir.shoppinglist.presentation.theme.AppTheme
 import com.vald3nir.toolkit.designsystem.annotations.ThemePreviews
 import com.vald3nir.toolkit.designsystem.components.DefaultSpaceWidth
 import com.vald3nir.toolkit.designsystem.components.HalfSpaceWidth

@@ -24,7 +24,7 @@ import androidx.compose.ui.graphics.Color
 import com.vald3nir.toolkit.designsystem.components.ToolkitSpacingMd
 
 @Composable
-fun ToolkitBaseContent(
+fun ToolkitScaffold(
     modifier: Modifier = Modifier,
     snackBarHostState: SnackbarHostState = SnackbarHostState(),
     topBar: @Composable () -> Unit = {},
@@ -66,4 +66,15 @@ fun ToolkitBaseContent(
             content = content
         )
     }
+}
+
+@Composable
+fun ToolkitColumn(content: @Composable ColumnScope.() -> Unit) {
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .windowInsetsPadding(WindowInsets.safeDrawing.exclude(WindowInsets.ime))
+            .padding(bottom = ToolkitSpacingMd),
+        content = content
+    )
 }

@@ -29,6 +29,7 @@
     <string name="confirm">Confirmar</string>
     <string name="research">Pesquisar</string>
     <string name="remove">Remover</string>
+    <string name="logout">Logout</string>
 
     <!-- Empty State -->
     <string name="empty_state_title">Lista vazia</string>
@@ -77,15 +78,40 @@
     <string name="list_details_remove_list_description">A lista %s será removida.</string>
     <string name="list_details_edit_list_name_title">Alteração no nome da lista</string>
     <string name="list_details_edit_list_name_label">Novo nome da lista</string>
+    <string name="list_details_add_item">Adicionar item</string>
 
     <!-- Feature: Item List Details -->
     <string name="item_details_title">Nesta tela, é possível editar todos os campos do item selecionado.</string>
-    <string name="item_details_select_category">Selecione uma categoria</string>
     <string name="item_details_remove_item_confirm">Deseja remover o item?</string>
     <string name="item_details_remove_item_description">O item %s será removido.</string>
     <string name="item_details_btn_save">Atualizar item</string>
     <string name="item_details_keep_on_card_question">Deseja adicionar o item ao carrinho?</string>
 
+    <!-- Feature: Profile -->
     <string name="profile_screen_user">Usuário</string>
-    <string name="profile_screen_btn_logout">Fazer Logout</string>
+    <string name="profile_screen_title">Perfil</string>
+    <string name="profile_dialog_logout_title">Fazer Logout</string>
+    <string name="profile_dialog_logout_description">Ao sair da conta, suas listas serão removidas do dispositivo e não serão salvas na nuvem.</string>
+    <string name="profile_screen_app_version">Versão do App</string>
+
+
+    <string name="feature_settings_top_app_bar_action_icon_description">Settings</string>
+    <string name="feature_settings_top_app_bar_navigation_icon_description">Search</string>
+    <string name="feature_settings_title">Settings</string>
+    <string name="feature_settings_loading">Loading…</string>
+    <string name="feature_settings_privacy_policy">Privacy policy</string>
+    <string name="feature_settings_licenses">Licenses</string>
+    <string name="feature_settings_brand_guidelines">Brand Guidelines</string>
+    <string name="feature_settings_feedback">Feedback</string>
+    <string name="feature_settings_theme">Theme</string>
+    <string name="feature_settings_brand_default">Default</string>
+    <string name="feature_settings_brand_android">Android</string>
+    <string name="feature_settings_dark_mode_preference">Dark mode preference</string>
+    <string name="feature_settings_dark_mode_config_system_default">System default</string>
+    <string name="feature_settings_dark_mode_config_light">Light</string>
+    <string name="feature_settings_dark_mode_config_dark">Dark</string>
+    <string name="feature_settings_dynamic_color_preference">Use Dynamic Color</string>
+    <string name="feature_settings_dynamic_color_yes">Yes</string>
+    <string name="feature_settings_dynamic_color_no">No</string>
+    <string name="feature_settings_dismiss_dialog_button_text">OK</string>
 </resources>

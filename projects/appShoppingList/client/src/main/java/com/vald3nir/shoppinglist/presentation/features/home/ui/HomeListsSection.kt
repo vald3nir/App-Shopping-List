@@ -7,7 +7,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import com.vald3nir.shoppinglist.presentation.theme.AppTheme
+import com.vald3nir.shoppinglist.core.ui.thema.AppTheme
 import com.vald3nir.toolkit.designsystem.annotations.ThemePreviews
 import com.vald3nir.toolkit.designsystem.components.ToolkitSpaceHeight
 import com.vald3nir.toolkit.designsystem.components.ToolkitSpacingMd

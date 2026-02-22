@@ -7,7 +7,7 @@ import com.vald3nir.toolkit.auth.repository.GoogleAuthenticator
 import com.vald3nir.toolkit.auth.repository.authenticate
 import com.vald3nir.toolkit.core.baseclasses.BaseUiState
 import com.vald3nir.toolkit.core.baseclasses.BaseViewModel
-import com.vald3nir.toolkit.core.services.sync.monitors.NetworkMonitor
+import com.vald3nir.toolkit.core.baseclasses.BaseViewModelParameters
 import dagger.hilt.android.lifecycle.HiltViewModel
 import io.github.jan.supabase.SupabaseClient
 import java.util.UUID
@@ -17,8 +17,8 @@ import javax.inject.Inject
 class AuthViewModel @Inject constructor(
     private val supabaseClient: SupabaseClient,
     private val repository: AuthenticatedUserRepository,
-    networkMonitor: NetworkMonitor,
-) : BaseViewModel(networkMonitor) {
+    parameters: BaseViewModelParameters
+) : BaseViewModel(parameters) {
 
     fun signInWithGoogle(context: Context, webGoogleClientID: String) {
         safeLaunch(
@@ -31,7 +31,7 @@ class AuthViewModel @Inject constructor(
                 repository.updateAuthenticatedUser(authenticatedUser)
             },
             onSuccessEvent = {
-                notifyState(BaseUiState.CloseState())
+                navigateBack()
             },
             onFailureEvent = {
                 notifyState(BaseUiState.LoadingState(false))

@@ -2,14 +2,14 @@ package com.vald3nir.shoppinglist.presentation.features.details.list
 
 import androidx.lifecycle.viewModelScope
 import com.vald3nir.shoppinglist.core.domain.dto.ItemShoppingListDTO
-import com.vald3nir.shoppinglist.domain.ListDetailDTO
 import com.vald3nir.shoppinglist.core.domain.dto.ShoppingListDTO
 import com.vald3nir.shoppinglist.core.domain.enums.ItemsFilterEnum
 import com.vald3nir.shoppinglist.core.repository.ItemShoppingListRepository
 import com.vald3nir.shoppinglist.core.repository.ShoppingListRepository
+import com.vald3nir.shoppinglist.domain.ListDetailDTO
 import com.vald3nir.toolkit.core.baseclasses.BaseUiState
 import com.vald3nir.toolkit.core.baseclasses.BaseViewModel
-import com.vald3nir.toolkit.core.services.sync.monitors.NetworkMonitor
+import com.vald3nir.toolkit.core.baseclasses.BaseViewModelParameters
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -27,8 +27,8 @@ import javax.inject.Inject
 internal class ListDetailsViewModel @Inject constructor(
     private val shoppingListRepository: ShoppingListRepository,
     private val itemShoppingListRepository: ItemShoppingListRepository,
-    networkMonitor: NetworkMonitor,
-) : BaseViewModel(networkMonitor) {
+    parameters: BaseViewModelParameters
+) : BaseViewModel(parameters) {
 
     private val filterFlow = MutableStateFlow(ItemsFilterEnum.OFF_CART)
     fun showItemsOnCart() {
@@ -97,7 +97,7 @@ internal class ListDetailsViewModel @Inject constructor(
                 shoppingListRepository.cloneShoppingList(listId)
             },
             onSuccessEvent = {
-                notifyState(BaseUiState.CloseState())
+                navigateBack()
             }
         )
     }
@@ -108,7 +108,7 @@ internal class ListDetailsViewModel @Inject constructor(
                 shoppingListRepository.deleteShoppingList(listId)
             },
             onSuccessEvent = {
-                notifyState(BaseUiState.CloseState())
+                navigateBack()
             }
         )
     }

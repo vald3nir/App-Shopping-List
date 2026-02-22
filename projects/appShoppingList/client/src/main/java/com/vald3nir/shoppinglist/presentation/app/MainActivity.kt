@@ -14,12 +14,11 @@ import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import com.vald3nir.shoppinglist.core.ui.thema.AppTheme
 import com.vald3nir.shoppinglist.presentation.features.appscreen.AppScreen
-import com.vald3nir.shoppinglist.presentation.features.appscreen.rememberAppState
-import com.vald3nir.shoppinglist.presentation.theme.AppTheme
 import com.vald3nir.toolkit.core.baseclasses.BaseActivity
-import com.vald3nir.toolkit.designsystem.theme.domain.ThemeSettingsDTO
 import com.vald3nir.toolkit.core.utils.extensions.isSystemInDarkTheme
+import com.vald3nir.toolkit.designsystem.theme.domain.ThemeSettingsDTO
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.distinctUntilChanged
@@ -81,13 +80,12 @@ class MainActivity : BaseActivity() {
         splashScreen.setKeepOnScreenCondition { viewModel.uiState.value.shouldKeepSplashScreen() }
 
         setContent {
-            val appState = rememberAppState()
             AppTheme(
                 darkTheme = themeSettings.darkTheme,
                 androidTheme = themeSettings.androidTheme,
                 disableDynamicTheming = themeSettings.disableDynamicTheming,
             ) {
-                AppScreen(appState)
+                AppScreen()
             }
         }
     }

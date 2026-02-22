@@ -70,7 +70,9 @@ const val googlePlayServiceGMSVersion = "21.4.0"
 // ## 🧪 Testing & Benchmarking
 const val androidJunitVersion = "1.1.5"
 const val espressoCoreVersion = "3.5.1"
-const val junitVersion = "4.13.2"
+const val junitVersion = "5.10.0"
+const val mockkVersion = "1.14.9"
+const val coroutinesTestVersion = "1.10.2"
 
 // Benchmarking & Metrics
 const val androidxMacroBenchmark = "1.3.4"

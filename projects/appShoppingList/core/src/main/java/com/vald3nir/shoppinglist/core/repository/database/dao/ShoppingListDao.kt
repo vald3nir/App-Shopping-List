@@ -19,6 +19,9 @@ internal interface ShoppingListDao {
     suspend fun insertShoppingList(entity: ShoppingListEntity): Long
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertShoppingLists(entities: List<ShoppingListEntity>): List<Long>
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertItems(items: List<ItemShoppingListEntity>)
 
     @Query(
@@ -38,7 +41,7 @@ internal interface ShoppingListDao {
 
     // --- Read / Queries ---
 
-    @Query("SELECT * FROM shopping_list WHERE inEditing = 0 ORDER BY lastUpdated DESC")
+    @Query("SELECT * FROM shopping_list WHERE inEditing = 0 AND deleted = 0 ORDER BY lastUpdated DESC")
     fun selectShoppingListsFlow(): Flow<List<ShoppingListEntity>?>
 
     @Query("SELECT * FROM shopping_list WHERE id = :listId")
@@ -46,6 +49,9 @@ internal interface ShoppingListDao {
 
     @Query("SELECT * FROM shopping_list WHERE id = :listId")
     fun selectShoppingListWithItemsFlow(listId: Long?): Flow<ShoppingListCrossRef?>
+
+    @Query("SELECT * FROM shopping_list WHERE deleted = 1 ORDER BY lastUpdated DESC")
+    suspend fun getDeletedLists(): List<ShoppingListEntity>
 
     @Query("SELECT COUNT(*) = 0 FROM shopping_list")
     suspend fun isEmpty(): Boolean
@@ -64,9 +70,11 @@ internal interface ShoppingListDao {
     suspend fun selectAllListsWithItems(): List<ShoppingListCrossRef>
 
     // --- Delete ---
+    @Query("UPDATE shopping_list SET deleted = 1, lastUpdated = :updatedAt WHERE id = :listId")
+    suspend fun deleteList(listId: Long, updatedAt: Long = System.currentTimeMillis())
 
-    @Query("DELETE FROM shopping_list WHERE id = :listId")
-    suspend fun deleteList(listId: Long)
+    @Query("DELETE FROM shopping_list WHERE deleted = 1")
+    suspend fun clearDeletedLists(): Int
 
     @Query("DELETE FROM shopping_list")
     suspend fun deleteAll()

@@ -19,3 +19,7 @@ dependencies {
     api(project(":toolkit:designsystem"))
     api(project(":toolkit:libs:auth"))
 }
+
+tasks.withType<Test> {
+    useJUnitPlatform()
+}
