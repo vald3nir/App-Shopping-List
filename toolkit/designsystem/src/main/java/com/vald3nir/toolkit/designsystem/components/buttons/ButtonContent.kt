@@ -1,13 +1,17 @@
 package com.vald3nir.toolkit.designsystem.components.buttons
 
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.sizeIn
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.vald3nir.toolkit.designsystem.components.icons.ToolkitIcon
 import com.vald3nir.toolkit.designsystem.components.texts.ToolkitText
@@ -19,14 +23,23 @@ fun ToolkitButtonContent(
     leadingIcon: ImageVector? = null,
     trailingIcon: ImageVector? = null,
 ) {
-    if (leadingIcon != null) {
-        ToolkitIcon(imageVector = leadingIcon)
-    }
-    Box(Modifier.padding(start = leadingIcon.calculateSpace(), end = trailingIcon.calculateSpace())) {
-        Text(label)
-    }
-    if (trailingIcon != null) {
-        ToolkitIcon(imageVector = trailingIcon)
+    Row(
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.SpaceBetween
+    ) {
+        if (leadingIcon != null) {
+            ToolkitIcon(imageVector = leadingIcon)
+        }
+        Box(
+            modifier = Modifier
+                .weight(1f, fill = false)
+                .padding(start = leadingIcon.calculateSpace(), end = trailingIcon.calculateSpace())
+        ) {
+            Text(text = label, textAlign = TextAlign.Center)
+        }
+        if (trailingIcon != null) {
+            ToolkitIcon(imageVector = trailingIcon)
+        }
     }
 }
 

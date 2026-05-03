@@ -98,13 +98,6 @@ private fun BackgroundDynamic() {
     }
 }
 
-@ThemePreviews
-@Composable
-private fun BackgroundAndroid() {
-    ToolkitTheme(androidTheme = true) {
-        ToolkitBackground(Modifier.size(100.dp), content = {})
-    }
-}
 
 @ThemePreviews
 @Composable
@@ -118,14 +111,6 @@ private fun GradientBackgroundDefault() {
 @Composable
 private fun GradientBackgroundDynamic() {
     ToolkitTheme(disableDynamicTheming = false) {
-        ToolkitGradientBackground(Modifier.size(100.dp), content = {})
-    }
-}
-
-@ThemePreviews
-@Composable
-private fun GradientBackgroundAndroid() {
-    ToolkitTheme(androidTheme = true) {
         ToolkitGradientBackground(Modifier.size(100.dp), content = {})
     }
 }

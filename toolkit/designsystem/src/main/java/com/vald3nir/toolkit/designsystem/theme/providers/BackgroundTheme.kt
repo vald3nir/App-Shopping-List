@@ -12,6 +12,3 @@ data class BackgroundTheme(
 )
 
 val LocalBackgroundTheme = staticCompositionLocalOf { BackgroundTheme() }
-
-val LightBackgroundTheme = BackgroundTheme(color = DarkGreenGray95)
-val DarkBackgroundTheme = BackgroundTheme(color = Color.Black)

@@ -1,6 +1,7 @@
 package com.vald3nir.toolkit.designsystem.components.texts
 
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.size
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.ProvideTextStyle
@@ -9,8 +10,9 @@ import androidx.compose.material3.TextButton
 import androidx.compose.material3.contentColorFor
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
 import com.vald3nir.toolkit.designsystem.annotations.ThemePreviews
-import com.vald3nir.toolkit.designsystem.theme.ToolkitTheme
+import com.vald3nir.toolkit.designsystem.extensions.ToolkitPreviewContainer
 
 @Composable
 fun ToolkitTag(
@@ -50,7 +52,7 @@ private object ToolkitTagDefaults {
 @ThemePreviews
 @Composable
 private fun Preview() {
-    ToolkitTheme {
+    ToolkitPreviewContainer(modifier = Modifier.size(100.dp)) {
         ToolkitTag(followed = true, onClick = {}) {
             Text("Topic".uppercase())
         }

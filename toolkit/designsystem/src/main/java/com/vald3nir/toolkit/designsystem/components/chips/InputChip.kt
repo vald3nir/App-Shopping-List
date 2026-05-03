@@ -11,8 +11,8 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
-import com.vald3nir.toolkit.designsystem.components.icons.ToolkitIconCatalog
 import com.vald3nir.toolkit.designsystem.components.icons.ToolkitIcon
+import com.vald3nir.toolkit.designsystem.components.icons.ToolkitIconCatalog
 
 @Composable
 fun ToolkitInputChip(

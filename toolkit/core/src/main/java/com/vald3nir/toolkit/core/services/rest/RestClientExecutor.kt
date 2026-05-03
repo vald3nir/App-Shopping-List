@@ -8,28 +8,29 @@ import java.io.IOException
 
 data class ErrorDTO(val message: String)
 
-
 open class RestClientExecutor {
 
     companion object {
         private val gson = Gson()
     }
 
-    suspend inline fun <reified T> execute(call: suspend () -> T): T {
-        try {
-            return call()
-        } catch (ex: HttpException) {
-            val statusCode = ex.code()
-            val apiMessage = parseErrorBody(ex.response()?.errorBody())
-            throw Exception(mapToFriendlyMessage(statusCode, apiMessage))
-        } catch (ex: IOException) {
-            // Falha de conexão, timeout, etc.
-            throw Exception("Problema de conexão. Verifique sua internet e tente novamente.")
-        } catch (ex: Exception) {
-            ex.printStackTrace()
-            throw DefaultException()
+    suspend inline fun <reified T> execute(crossinline call: suspend () -> T): T = runCatching { call() }.onFailure { error ->
+        when (error) {
+            is HttpException -> {
+                val statusCode = error.code()
+                val apiMessage = parseErrorBody(error.response()?.errorBody())
+                throw Exception(mapToFriendlyMessage(statusCode, apiMessage))
+            }
+            is IOException -> {
+                // Falha de conexão, timeout, etc.
+                throw Exception("Problema de conexão. Verifique sua internet e tente novamente.")
+            }
+            is Exception -> {
+                error.printStackTrace()
+                throw DefaultException()
+            }
         }
-    }
+    }.getOrThrow()
 
     fun parseErrorBody(errorBody: ResponseBody?): String? {
         return try {

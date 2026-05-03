@@ -2,8 +2,10 @@ package com.vald3nir.toolkit.core.utils.extensions
 
 import com.vald3nir.toolkit.core.services.analytics.notifyLog
 import java.text.SimpleDateFormat
+import java.time.Instant
 import java.time.LocalDate
 import java.time.Period
+import java.time.ZoneOffset
 import java.time.ZonedDateTime
 import java.time.format.DateTimeFormatter
 import java.util.Calendar
@@ -38,11 +40,13 @@ fun String?.toDateReduced(): String {
         parsedDate.format(formatter)
     } catch (e: Exception) {
         e.notifyLog()
-        getCurrentDate()
+        getShortDate()
     }
 }
 
-fun getCurrentDate(): String {
+fun getISODate() = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.'Z'").withZone(ZoneOffset.UTC).format(Instant.now())
+
+fun getShortDate(): String {
     val dateFormat = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
     return dateFormat.format(Date())
 }

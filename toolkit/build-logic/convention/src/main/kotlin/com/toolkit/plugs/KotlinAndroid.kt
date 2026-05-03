@@ -1,6 +1,7 @@
 package com.toolkit.plugs
 
-import com.android.build.api.dsl.CommonExtension
+import com.android.build.api.dsl.ApplicationExtension
+import com.android.build.api.dsl.LibraryExtension
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.assign
 import org.gradle.kotlin.dsl.configure
@@ -10,7 +11,27 @@ import org.jetbrains.kotlin.gradle.dsl.KotlinAndroidProjectExtension
 import org.jetbrains.kotlin.gradle.dsl.KotlinBaseExtension
 import org.jetbrains.kotlin.gradle.dsl.KotlinJvmProjectExtension
 
-internal fun Project.configureKotlinAndroid(commonExtension: CommonExtension<*, *, *, *, *, *>) {
+internal fun Project.configureKotlinAndroid(commonExtension: ApplicationExtension) {
+    commonExtension.apply {
+        compileSdk = EnvironmentSetup.COMPILE_SDK
+        defaultConfig {
+            minSdk = EnvironmentSetup.MIN_SDK
+            testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        }
+        compileOptions {
+            sourceCompatibility = EnvironmentSetup.JAVA_VERSION
+            targetCompatibility = EnvironmentSetup.JAVA_VERSION
+            isCoreLibraryDesugaringEnabled = true
+        }
+    }
+    configureKotlin<KotlinAndroidProjectExtension>()
+
+    dependencies {
+        add("coreLibraryDesugaring", "com.android.tools:desugar_jdk_libs:$androidDesugarJdkLibs")
+    }
+}
+
+internal fun Project.configureKotlinAndroid(commonExtension: LibraryExtension) {
     commonExtension.apply {
         compileSdk = EnvironmentSetup.COMPILE_SDK
         defaultConfig {

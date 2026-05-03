@@ -10,14 +10,18 @@ import androidx.compose.material.icons.automirrored.rounded.ShortText
 import androidx.compose.material.icons.filled.AccountCircle
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Addchart
+import androidx.compose.material.icons.filled.Backpack
+import androidx.compose.material.icons.filled.BarChart
 import androidx.compose.material.icons.filled.Check
 import androidx.compose.material.icons.filled.ChevronLeft
 import androidx.compose.material.icons.filled.ChevronRight
 import androidx.compose.material.icons.filled.Close
+import androidx.compose.material.icons.filled.Code
 import androidx.compose.material.icons.filled.ContentCopy
 import androidx.compose.material.icons.filled.DarkMode
 import androidx.compose.material.icons.filled.DateRange
 import androidx.compose.material.icons.filled.Delete
+import androidx.compose.material.icons.filled.DirectionsCar
 import androidx.compose.material.icons.filled.Edit
 import androidx.compose.material.icons.filled.Email
 import androidx.compose.material.icons.filled.Favorite
@@ -34,8 +38,11 @@ import androidx.compose.material.icons.filled.MoreVert
 import androidx.compose.material.icons.filled.Notifications
 import androidx.compose.material.icons.filled.Paid
 import androidx.compose.material.icons.filled.Password
+import androidx.compose.material.icons.filled.PedalBike
 import androidx.compose.material.icons.filled.Person
+import androidx.compose.material.icons.filled.PhoneAndroid
 import androidx.compose.material.icons.filled.Pin
+import androidx.compose.material.icons.filled.QrCodeScanner
 import androidx.compose.material.icons.filled.Remove
 import androidx.compose.material.icons.filled.RemoveCircleOutline
 import androidx.compose.material.icons.filled.Save
@@ -45,9 +52,11 @@ import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material.icons.filled.Share
 import androidx.compose.material.icons.filled.ShoppingBasket
 import androidx.compose.material.icons.filled.ShoppingCart
+import androidx.compose.material.icons.filled.SolarPower
 import androidx.compose.material.icons.filled.Star
 import androidx.compose.material.icons.filled.Visibility
 import androidx.compose.material.icons.filled.VisibilityOff
+import androidx.compose.material.icons.filled.WbSunny
 import androidx.compose.material.icons.outlined.AddShoppingCart
 import androidx.compose.material.icons.outlined.AttachMoney
 import androidx.compose.material.icons.outlined.Bookmarks
@@ -134,8 +143,21 @@ object ToolkitIconCatalog {
     val Warning = Icons.Outlined.Warning
     val Wifi = Icons.Outlined.Wifi
     val WifiOff = Icons.Outlined.WifiOff
+    val PhoneAndroid = Icons.Default.PhoneAndroid
+    val DirectionsCar = Icons.Default.DirectionsCar
+    val PedalBike = Icons.Default.PedalBike
+    val Backpack = Icons.Default.Backpack
+    val BarChart = Icons.Default.BarChart
+    val SolarPower = Icons.Default.SolarPower
+    val QrCodeScanner = Icons.Default.QrCodeScanner
 
     val allIcons = listOf(
+        "DirectionsCar" to DirectionsCar,
+        "BarChart" to BarChart,
+        "SolarPower" to SolarPower,
+        "PedalBike" to PedalBike,
+        "Backpack" to Backpack,
+        "PhoneAndroid" to PhoneAndroid,
         "AccountCircle" to AccountCircle,
         "Add" to Add,
         "AddChart" to AddChart,

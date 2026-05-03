@@ -14,6 +14,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.vald3nir.toolkit.designsystem.annotations.ThemePreviews
 import com.vald3nir.toolkit.designsystem.components.containers.ToolkitBackground
+import com.vald3nir.toolkit.designsystem.extensions.ToolkitPreviewContainer
 import com.vald3nir.toolkit.designsystem.theme.ToolkitTheme
 import com.vald3nir.toolkit.designsystem.theme.text.ToolkitTypography
 
@@ -65,16 +66,12 @@ private fun TextStyle.BuiltText(modifier: Modifier = Modifier, text: String, tex
 @ThemePreviews
 @Composable
 private fun Preview() {
-    ToolkitTheme {
-        ToolkitBackground(modifier = Modifier) {
-            Column {
-                LazyColumn(
-                    modifier = Modifier.fillMaxSize(),
-                    verticalArrangement = Arrangement.spacedBy(16.dp),
-                ) {
-                    catalogTexts()
-                }
-            }
+    ToolkitPreviewContainer(modifier = Modifier) {
+        LazyColumn(
+            modifier = Modifier.fillMaxSize(),
+            verticalArrangement = Arrangement.spacedBy(16.dp),
+        ) {
+            catalogTexts()
         }
     }
 }

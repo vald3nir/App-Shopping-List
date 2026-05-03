@@ -1,0 +1,81 @@
+<resources>
+    <!-- ============ APP ============ -->
+    <string name="app_name">Listas de Compras</string>
+
+    <!-- ============ COMMON ACTIONS ============ -->
+    <string name="alter">Alterar</string>
+    <string name="cancel">Cancelar</string>
+    <string name="remove">Remover</string>
+    <string name="logout">Sair</string>
+
+    <!-- ============ HOME FEATURE ============ -->
+    <string name="home_title">Minhas listas</string>
+    <string name="home_search_list">Buscar lista</string>
+    <string name="no_registered_lists">Sem listas cadastradas</string>
+
+    <!-- ============ CREATE LIST FEATURE ============ -->
+    <string name="create_new_list_title">Nova lista de compras</string>
+    <string name="create_list_name">Nome da Lista</string>
+    <string name="create_list_default_title">Minha lista de compras</string>
+    <string name="create_list_input_list_name">Informe um nome para identificar a sua lista</string>
+    <string name="create_list_empty_state_message">Para criar uma lista você deve adicionar itens</string>
+    <string name="create_list_btn_add_items">Adicionar itens</string>
+    <string name="create_list_btn_add">Nova lista</string>
+    <string name="create_list_btn_save">Salvar</string>
+    <string name="create_list_btn_cancel">Cancelar</string>
+    <string name="create_list_search_item">Buscar item</string>
+
+    <!-- ============ LIST DETAILS FEATURE ============ -->
+    <string name="list_details_add_to_shopping_cart">Colocar no carrinho</string>
+    <string name="list_details_remove_from_shopping_cart">Remover do carrinho</string>
+    <string name="list_details_empty_state_message">Sem itens cadastrados</string>
+    <string name="list_details_cart_on_size">Itens no carrinho:</string>
+    <string name="list_details_cart_off_size">Itens fora do carrinho:</string>
+    <string name="list_details_cart_total">Valor total:</string>
+    <string name="list_details_alter_title">Alterar nome da lista</string>
+    <string name="list_details_delete_list">Apagar lista</string>
+    <string name="list_details_clone_list">Fazer uma cópia</string>
+    <string name="list_details_remove_list_confirm">Deseja remover a lista?</string>
+    <string name="list_details_remove_list_description">A lista %s será removida.</string>
+    <string name="list_details_edit_list_name_title">Alteração no nome da lista</string>
+    <string name="list_details_edit_list_name_label">Novo nome da lista</string>
+    <string name="list_details_add_item">Adicionar item</string>
+
+    <!-- ============ INSERT ITEM FEATURE ============ -->
+    <string name="insert_item_list_title">Adição de novo item</string>
+    <string name="insert_item_list_product_name">Nome do produto</string>
+    <string name="insert_item_list_product">Produto</string>
+    <string name="insert_item_list_products_size_label">Quantidade</string>
+    <string name="insert_item_list_products_size_description">Digite a quantidade deste produto</string>
+    <string name="insert_item_list_unit_price_label">Preço unitário</string>
+    <string name="insert_item_list_unit_price_description">Digite o preço do produto</string>
+    <string name="insert_item_product_detail">Informe o nome do produto que você deseja adicionar à sua lista de compras.</string>
+    <string name="insert_item_top_product_detail">Se preferir, selecione um produto utilizado com frequência.</string>
+    <string name="insert_item_btn_add">Adicionar item</string>
+
+    <!-- ============ EDIT ITEM FEATURE ============ -->
+    <string name="edit_item_title">Edição de Item</string>
+    <string name="edit_item_description">Nesta tela, é possível editar todos os campos do item selecionado.</string>
+    <string name="edit_item_remove_confirm_title">Deseja remover o item?</string>
+    <string name="edit_item_remove_confirm_description">O item %s será removido.</string>
+    <string name="edit_item_btn_save">Atualizar item</string>
+
+    <!-- ============ INSERT ITEM FEATURE ============ -->
+    <string name="insert_item_title">Inserir Novo Item</string>
+    <string name="insert_item_description">Informe os dados do produto.</string>
+    <string name="insert_item_btn_save">Adicionar item</string>
+    <string name="insert_item_btn_barcode">Ler código de barras</string>
+
+    <!-- ============ PROFILE FEATURE ============ -->
+    <string name="profile_screen_title">Perfil</string>
+    <string name="profile_screen_user_not_authenticated">Usuário não autenticado</string>
+    <string name="profile_btn_login">Fazer login</string>
+    <string name="profile_screen_btn_sync">Sincronizar listas</string>
+    <string name="profile_screen_btn_alter_theme">Alterar tema</string>
+    <string name="profile_dialog_logout_title">Fazer logout</string>
+    <string name="profile_dialog_logout_description">Ao sair da conta, a suas listas serão removidas do dispositivo e não serão salvas na nuvem.</string>
+
+    <!-- ============ SETTINGS FEATURE ============ -->
+    <string name="select_theme_preferences">Preferência de modo escuro</string>
+
+</resources>

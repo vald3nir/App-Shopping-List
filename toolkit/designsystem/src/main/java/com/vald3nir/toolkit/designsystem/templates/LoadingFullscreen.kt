@@ -6,14 +6,14 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.size
-import androidx.compose.material.CircularProgressIndicator
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.vald3nir.toolkit.designsystem.annotations.ThemePreviews
-import com.vald3nir.toolkit.designsystem.components.DefaultSpaceHeight
+import com.vald3nir.toolkit.designsystem.components.ToolkitSpaceHeight
 import com.vald3nir.toolkit.designsystem.components.containers.ToolkitBackground
 import com.vald3nir.toolkit.designsystem.components.texts.ToolkitText
 import com.vald3nir.toolkit.designsystem.components.texts.ToolkitTextStyle
@@ -41,7 +41,7 @@ fun ToolkitLoadingFullscreen(
                 modifier = Modifier.size(48.dp),
                 strokeWidth = 4.dp
             )
-            DefaultSpaceHeight()
+            ToolkitSpaceHeight()
             ToolkitText(text = message, style = ToolkitTextStyle.TitleMedium, textColor = foregroundColor)
         }
     }

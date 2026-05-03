@@ -1,0 +1,12 @@
+id,name,created_at,updated_at,icon_url
+13e85abc-bf56-4333-b88e-bddb3c8801d9,Hortifruti,2025-12-30T19:20:20.804301+00:00,2025-12-30T19:31:11.92719+00:00,https://raw.githubusercontent.com/vald3nir/App-Shopping-List/develop/docs/drawables/ic_apple.png
+18b94bfc-c85a-4642-bbda-968de217246a,Padaria,2025-12-30T19:20:20.804301+00:00,2025-12-30T19:31:11.92719+00:00,https://raw.githubusercontent.com/vald3nir/App-Shopping-List/develop/docs/drawables/ic_bread.png
+20d6cfce-3a4b-4ae3-8e1c-29fa99480668,Escritório,2025-12-30T19:20:20.804301+00:00,2025-12-30T19:31:11.92719+00:00,https://raw.githubusercontent.com/vald3nir/App-Shopping-List/develop/docs/drawables/ic_office.png
+48e45f47-5b9a-482f-8cba-d27c0c42a7b6,Mercearia,2025-12-30T19:20:20.804301+00:00,2025-12-30T19:31:11.92719+00:00,https://raw.githubusercontent.com/vald3nir/App-Shopping-List/develop/docs/drawables/ic_groceries.png
+689e14c3-ea81-43e0-9807-8e4adad0544f,Higiene e Beleza,2025-12-30T19:20:20.804301+00:00,2025-12-30T19:31:11.92719+00:00,https://raw.githubusercontent.com/vald3nir/App-Shopping-List/develop/docs/drawables/ic_hygiene.png
+b6ee5875-9888-4c77-acb2-e82f6c243366,Limpeza,2025-12-30T19:20:20.804301+00:00,2025-12-30T19:31:11.92719+00:00,https://raw.githubusercontent.com/vald3nir/App-Shopping-List/develop/docs/drawables/ic_cleaning.png
+e4d34e79-ec5b-4142-90f6-bdd0455aeef6,Açougue e Peixaria,2025-12-30T19:20:20.804301+00:00,2025-12-30T19:31:11.92719+00:00,https://raw.githubusercontent.com/vald3nir/App-Shopping-List/develop/docs/drawables/ic_meat.png
+ed362ed5-0e31-4dcd-8da0-f59f6359bd10,Eletrônicos,2025-12-30T19:20:20.804301+00:00,2025-12-30T19:31:11.92719+00:00,https://raw.githubusercontent.com/vald3nir/App-Shopping-List/develop/docs/drawables/ic_electronics.png
+2c130ccc-aaf4-46f6-8bc1-7ac3623f349b,Material de Construção,2025-12-30T19:20:20.804301+00:00,2025-12-30T19:31:11.92719+00:00,https://raw.githubusercontent.com/vald3nir/App-Shopping-List/develop/docs/drawables/ic_tools.png
+8bd9124b-132a-4d2b-a98c-bfb582669496,Bebidas,2025-12-30T19:20:20.804301+00:00,2025-12-30T19:31:11.92719+00:00,https://raw.githubusercontent.com/vald3nir/App-Shopping-List/develop/docs/drawables/ic_drink.png
+a4296e54-b549-493e-b7a3-baf4bed94b60,Farmácia,2026-01-17T15:00:32.642019+00:00,2025-12-30T19:31:11.92719+00:00,https://raw.githubusercontent.com/vald3nir/App-Shopping-List/develop/docs/drawables/ic_pharmacy.png

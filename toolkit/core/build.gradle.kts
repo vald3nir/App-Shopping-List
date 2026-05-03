@@ -3,7 +3,6 @@ plugins {
     alias(libs.plugins.toolkit.di.hilt)
     alias(libs.plugins.toolkit.network)
     alias(libs.plugins.toolkit.firebase)
-    alias(libs.plugins.toolkit.supabase)
 }
 
 android {
@@ -11,4 +10,5 @@ android {
 }
 
 dependencies {
+    api(project(":toolkit:designsystem"))
 }

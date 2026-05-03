@@ -15,12 +15,11 @@ import com.vald3nir.toolkit.designsystem.annotations.ThemePreviews
 import com.vald3nir.toolkit.designsystem.components.ToolkitSpacingMd
 import com.vald3nir.toolkit.designsystem.components.ToolkitSpacingXl
 import com.vald3nir.toolkit.designsystem.components.buttons.ToolkitBaseButton
-import com.vald3nir.toolkit.designsystem.components.containers.ToolkitBackground
 import com.vald3nir.toolkit.designsystem.components.icons.ToolkitIcon
 import com.vald3nir.toolkit.designsystem.components.icons.ToolkitIconCatalog
 import com.vald3nir.toolkit.designsystem.components.texts.ToolkitText
 import com.vald3nir.toolkit.designsystem.components.texts.ToolkitTextStyle
-import com.vald3nir.toolkit.designsystem.theme.ToolkitTheme
+import com.vald3nir.toolkit.designsystem.extensions.ToolkitPreviewContainer
 
 @Composable
 fun ToolkitEmptyStateScreen(
@@ -53,12 +52,10 @@ fun ToolkitEmptyStateScreen(
 @ThemePreviews
 @Composable
 private fun Preview() {
-    ToolkitTheme {
-        ToolkitBackground {
-            ToolkitEmptyStateScreen(
-                title = "Sem itens cadastrados",
-                btnText = "Adicionar",
-            )
-        }
+    ToolkitPreviewContainer {
+        ToolkitEmptyStateScreen(
+            title = "Sem itens cadastrados",
+            btnText = "Adicionar",
+        )
     }
 }

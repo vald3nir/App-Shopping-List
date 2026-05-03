@@ -1,11 +1,13 @@
 package com.vald3nir.toolkit.designsystem.theme.domain
 
-//enum class ThemeBrandEnum {
-//    DEFAULT,
-//    ANDROID,
-//}
+import com.vald3nir.toolkit.designsystem.theme.brands.BaseThemeBrand
+import com.vald3nir.toolkit.designsystem.theme.brands.BlueThemeBrand
+import com.vald3nir.toolkit.designsystem.theme.brands.GreenThemeBrand
+import com.vald3nir.toolkit.designsystem.theme.brands.PurpleThemaBrand
+import com.vald3nir.toolkit.designsystem.theme.brands.RedThemeBrand
+import com.vald3nir.toolkit.designsystem.theme.brands.YellowThemeBrand
 
-enum class ThemeBrandEnum2(private val label: String) {
+enum class ThemeBrandEnum(private val label: String) {
     BLUE("Azul"),
     GREEN("Verde"),
     PURPLE("Roxo"),
@@ -15,12 +17,21 @@ enum class ThemeBrandEnum2(private val label: String) {
     val key: String
         get() = label
 
+    fun toThemeBrand(): BaseThemeBrand = when (this) {
+        BLUE -> BlueThemeBrand()
+        GREEN -> GreenThemeBrand()
+        PURPLE -> PurpleThemaBrand()
+        RED -> RedThemeBrand()
+        YELLOW -> YellowThemeBrand()
+    }
+
     companion object {
 
-        fun fromKey(key: String?): ThemeBrandEnum2? {
+        fun fromKey(key: String?): ThemeBrandEnum? {
             return key
                 ?.lowercase()
-                ?.let { value -> ThemeBrandEnum2.entries.firstOrNull { it.label.lowercase() == value } }
+                ?.let { value -> ThemeBrandEnum.entries.firstOrNull { it.label.lowercase() == value } }
         }
+
     }
 }

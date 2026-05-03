@@ -5,6 +5,7 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -24,6 +25,7 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.unit.dp
 import com.vald3nir.toolkit.designsystem.components.ToolkitSpacingMd
 import com.vald3nir.toolkit.designsystem.components.halfSpace
 import com.vald3nir.toolkit.designsystem.components.icons.BuildIconButton
@@ -108,6 +110,7 @@ fun ToolkitAutoCompleteInput(
             LazyColumn(
                 modifier = Modifier
                     .fillMaxWidth()
+                    .heightIn(max = 200.dp) // <--- Define um teto. Isso impede o crash Vertically scrollable component was measured with an infinity maximum height constraints
                     .padding(top = halfSpace),
                 verticalArrangement = Arrangement.spacedBy(halfSpace)
             ) {

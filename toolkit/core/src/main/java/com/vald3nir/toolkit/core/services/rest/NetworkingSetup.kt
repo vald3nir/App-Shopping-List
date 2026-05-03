@@ -1,6 +1,7 @@
 package com.vald3nir.toolkit.core.services.rest
 
 import com.google.gson.GsonBuilder
+import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -8,18 +9,18 @@ import java.util.concurrent.TimeUnit
 
 object NetworkingSetup {
 
-    fun baseInterceptors() = listOf(
+    private val baseInterceptors = listOf(
         loggerInterceptor(),
         ContentTypeInterceptor(),
         CurlLoggingInterceptor()
     )
 
-    fun buildOkHttpClient(): OkHttpClient {
+    fun buildOkHttpClient(interceptors: List<Interceptor> = baseInterceptors): OkHttpClient {
         val builder = OkHttpClient.Builder()
             .connectTimeout(30, TimeUnit.SECONDS)
             .readTimeout(30, TimeUnit.SECONDS)
             .writeTimeout(30, TimeUnit.SECONDS)
-        baseInterceptors().forEach { interceptor ->
+        interceptors.forEach { interceptor ->
             builder.addInterceptor(interceptor)
         }
         return builder.build()

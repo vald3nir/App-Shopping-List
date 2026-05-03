@@ -10,6 +10,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.drawscope.drawIntoCanvas
 import androidx.compose.ui.graphics.nativeCanvas
 import androidx.compose.ui.unit.dp
+import com.vald3nir.toolkit.designsystem.components.charts.model.ItemChartDTO
+import com.vald3nir.toolkit.designsystem.components.charts.model.sum
 import kotlin.math.abs
 
 @Composable

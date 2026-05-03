@@ -30,8 +30,7 @@ fun Project.setupBaseLibs() {
         add("implementation", "androidx.core:core-ktx:$coreKtxVersion")
         add("implementation", "androidx.work:work-runtime-ktx:$androidxWork")
 
-        // Navigation & Lifecycle
-        add("implementation", "androidx.navigation:navigation-compose:$navigationComposeVersion")
+        // Lifecycle
         add("implementation", "androidx.lifecycle:lifecycle-viewmodel-compose:$lifecycleVersion")
         add("implementation", "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycleVersion")
         add("implementation", "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycleVersion")
@@ -61,8 +60,8 @@ fun Project.setupBaseLibs() {
         add("implementation", "androidx.compose.material3.adaptive:adaptive:$androidxComposeMaterial3Adaptive")
         add("implementation", "androidx.compose.material3.adaptive:adaptive-layout:$androidxComposeMaterial3Adaptive")
         add("implementation", "androidx.compose.material3.adaptive:adaptive-navigation:$androidxComposeMaterial3Adaptive")
-        add("implementation", "androidx.compose.material3:material3-adaptive-navigation-suite:1.5.0-alpha03")
-        add("implementation", "androidx.compose.material3:material3-window-size-class:1.3.2")
+        add("implementation", "androidx.compose.material3:material3-adaptive-navigation-suite:1.4.0")
+        add("implementation", "androidx.compose.material3:material3-window-size-class:1.4.0")
 
         // Data Serialization
         add("implementation", "org.jetbrains.kotlinx:kotlinx-serialization-json:$kotlinxSerialization")

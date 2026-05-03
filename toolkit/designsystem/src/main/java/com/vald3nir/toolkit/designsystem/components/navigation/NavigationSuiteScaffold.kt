@@ -16,7 +16,7 @@ import androidx.compose.ui.graphics.Color
 
 @Composable
 fun ToolkitNavigationSuiteScaffold(
-    navigationSuiteItems: NiaNavigationSuiteScope.() -> Unit,
+    navigationSuiteItems: ToolkitNavigationSuiteScope.() -> Unit,
     modifier: Modifier = Modifier,
     windowAdaptiveInfo: WindowAdaptiveInfo = currentWindowAdaptiveInfo(),
     content: @Composable () -> Unit,
@@ -47,7 +47,7 @@ fun ToolkitNavigationSuiteScaffold(
 
     NavigationSuiteScaffold(
         navigationSuiteItems = {
-            NiaNavigationSuiteScope(navigationSuiteScope = this, navigationSuiteItemColors = navigationSuiteItemColors).run(navigationSuiteItems)
+            ToolkitNavigationSuiteScope(navigationSuiteScope = this, navigationSuiteItemColors = navigationSuiteItemColors).run(navigationSuiteItems)
         },
         layoutType = layoutType,
         containerColor = Color.Transparent,
@@ -61,7 +61,7 @@ fun ToolkitNavigationSuiteScaffold(
     }
 }
 
-class NiaNavigationSuiteScope internal constructor(
+class ToolkitNavigationSuiteScope internal constructor(
     private val navigationSuiteScope: NavigationSuiteScope,
     private val navigationSuiteItemColors: NavigationSuiteItemColors,
 ) {

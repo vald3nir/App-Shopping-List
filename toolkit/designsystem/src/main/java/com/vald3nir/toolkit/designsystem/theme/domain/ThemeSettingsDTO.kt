@@ -1,7 +1,7 @@
 package com.vald3nir.toolkit.designsystem.theme.domain
 
 data class ThemeSettingsDTO(
-    val themaBrandEnum: ThemeBrandEnum2,
-    val darkTheme: Boolean,
-    val disableDynamicTheming: Boolean,
+    val themaBrandEnum: ThemeBrandEnum = ThemeBrandEnum.BLUE,
+    val darkTheme: Boolean = true,
+    val disableDynamicTheming: Boolean = true,
 )

@@ -11,16 +11,21 @@ object FirebaseDatabase {
         Firebase.database.setPersistenceEnabled(true)
     }
 
-    fun insertOrUpdate(path: String, data: Any) {
+    suspend fun insertOrUpdate(path: String, data: Any) {
         println("Firebase: Writing data to path: $path")
         println("Firebase: Data: $data")
-        Firebase.database.getReference(path).setValue(data)
+        try {
+            Firebase.database.getReference(path).setValue(data).await()
+            println("Firebase: Data written successfully")
+        } catch (e: Exception) {
+            println("Firebase: Failed to write data: ${e.message}")
+        }
     }
 
-    suspend fun readList(path: String): List<String?> {
+    suspend fun readList(path: String): List<String> {
         println("Firebase: Reading data from path: $path")
         val myRef = Firebase.database.getReference(path)
-        val response = arrayListOf<String?>()
+        val response = arrayListOf<String>()
         val children = myRef.get().await().children
         children.forEach { item ->
             val data = item.value as Map<*, *>

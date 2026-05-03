@@ -1,6 +1,5 @@
 package com.vald3nir.toolkit.designsystem.components.selectors
 
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.grid.GridCells
@@ -16,8 +15,7 @@ import androidx.compose.ui.unit.dp
 import com.vald3nir.toolkit.designsystem.annotations.ThemePreviews
 import com.vald3nir.toolkit.designsystem.components.ToolkitSpaceHeight
 import com.vald3nir.toolkit.designsystem.components.ToolkitSpacingXl
-import com.vald3nir.toolkit.designsystem.components.containers.ToolkitBackground
-import com.vald3nir.toolkit.designsystem.theme.ToolkitTheme
+import com.vald3nir.toolkit.designsystem.extensions.ToolkitPreviewContainer
 
 enum class ToolkitRadioButtonGroupType { LIST, GRID }
 
@@ -74,19 +72,15 @@ fun ToolkitRadioButtonGroup(
 @ThemePreviews
 @Composable
 private fun Preview() {
-    ToolkitTheme {
-        ToolkitBackground(modifier = Modifier.size(300.dp, 600.dp)) {
-            Column {
-                ToolkitRadioButtonGroup(
-                    items = listOf("Item 1", "Item 2", "Item 3", "Item 4", "Item 5"),
-                    viewType = ToolkitRadioButtonGroupType.GRID,
-                )
-                ToolkitSpaceHeight(ToolkitSpacingXl)
-                ToolkitRadioButtonGroup(
-                    items = listOf("Item 1", "Item 2", "Item 3", "Item 4", "Item 5"),
-                    viewType = ToolkitRadioButtonGroupType.LIST,
-                )
-            }
-        }
+    ToolkitPreviewContainer(modifier = Modifier.size(300.dp, 600.dp)) {
+        ToolkitRadioButtonGroup(
+            items = listOf("Item 1", "Item 2", "Item 3", "Item 4", "Item 5"),
+            viewType = ToolkitRadioButtonGroupType.GRID,
+        )
+        ToolkitSpaceHeight(ToolkitSpacingXl)
+        ToolkitRadioButtonGroup(
+            items = listOf("Item 1", "Item 2", "Item 3", "Item 4", "Item 5"),
+            viewType = ToolkitRadioButtonGroupType.LIST,
+        )
     }
 }

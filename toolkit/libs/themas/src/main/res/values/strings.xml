@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <string name="select_theme_title">Seleção de tema</string>
-    <string name="select_theme_brands">Seleção cor</string>
-    <string name="select_theme_preferences">Preferências do tema</string>
-    <string name="select_theme_use_dynamic_color">Usar tema dinâmico?</string>
-    <string name="select_theme_btn_ok">OK</string>
-</resources>

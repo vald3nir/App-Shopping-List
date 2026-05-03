@@ -21,7 +21,7 @@ fun ToolkitFixedButton(
     onClick: () -> Unit = {},
 ) {
     ToolkitBaseButton(
-        modifier = Modifier
+        modifier = modifier
             .fillMaxWidth()
             .padding(horizontal = ToolkitSpacingMd, vertical = ToolkitSpacingLg),
         onClick = onClick,

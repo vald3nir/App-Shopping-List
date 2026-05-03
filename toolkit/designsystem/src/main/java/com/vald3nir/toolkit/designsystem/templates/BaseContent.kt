@@ -1,5 +1,6 @@
 package com.vald3nir.toolkit.designsystem.templates
 
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
@@ -13,12 +14,15 @@ import androidx.compose.foundation.layout.only
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.safeDrawing
 import androidx.compose.foundation.layout.windowInsetsPadding
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.Alignment.Companion
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import com.vald3nir.toolkit.designsystem.components.ToolkitSpacingMd
@@ -69,12 +73,21 @@ fun ToolkitScaffold(
 }
 
 @Composable
-fun ToolkitColumn(content: @Composable ColumnScope.() -> Unit) {
+fun ToolkitColumn(
+    modifier: Modifier = Modifier,
+    verticalArrangement: Arrangement.Vertical = Arrangement.Top,
+    horizontalAlignment: Alignment.Horizontal = Alignment.Start,
+    content: @Composable ColumnScope.() -> Unit
+) {
+    val scrollState = rememberScrollState()
     Column(
-        modifier = Modifier
+        modifier = modifier
             .fillMaxSize()
-            .windowInsetsPadding(WindowInsets.safeDrawing.exclude(WindowInsets.ime))
+            .windowInsetsPadding(WindowInsets.safeDrawing)
+            .verticalScroll(scrollState)
             .padding(bottom = ToolkitSpacingMd),
+        verticalArrangement = verticalArrangement,
+        horizontalAlignment = horizontalAlignment,
         content = content
     )
 }

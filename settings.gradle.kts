@@ -28,18 +28,6 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "appShoppingList"
-include(":projects:appShoppingList:core")
-include(":projects:appShoppingList:client")
-include(":projects:appShoppingList:manager")
-
-// Toolkit Libs
-include(":toolkit:core")
-include(":toolkit:designsystem")
-include(":toolkit:libs:auth")
-include(":toolkit:libs:themas")
-include(":toolkit:libs:servicelocation")
-
 check(JavaVersion.current().isCompatibleWith(JavaVersion.VERSION_17)) {
     """
     Now in Android requires JDK 17+ but it is currently using JDK ${JavaVersion.current()}.
@@ -47,3 +35,15 @@ check(JavaVersion.current().isCompatibleWith(JavaVersion.VERSION_17)) {
     https://developer.android.com/build/jdks#jdk-config-in-studio
     """.trimIndent()
 }
+
+rootProject.name = "appShoppingList"
+
+// App
+include(":app")
+
+// Toolkit Libs
+include(":toolkit:core")
+include(":toolkit:designsystem")
+include(":toolkit:libs:auth")
+include(":toolkit:libs:servicelocation")
+include(":toolkit:libs:camera")

@@ -3,6 +3,7 @@ package com.vald3nir.toolkit.core.baseclasses
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.vald3nir.toolkit.core.services.sync.monitors.NetworkMonitor
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
@@ -47,8 +48,8 @@ abstract class BaseViewModel(private val parameters: BaseViewModelParameters) : 
         _uiState.value = state
     }
 
-    fun safeLaunch(action: suspend () -> Unit, onSuccessEvent: () -> Unit = {}, onFailureEvent: () -> Unit = {}) {
-        viewModelScope.launch {
+    fun safeLaunch(action: suspend () -> Unit, onSuccessEvent: () -> Unit = {}, onFailureEvent: () -> Unit = {}): Job {
+        return viewModelScope.launch {
             runCatching {
                 action.invoke()
             }.onFailure { error ->

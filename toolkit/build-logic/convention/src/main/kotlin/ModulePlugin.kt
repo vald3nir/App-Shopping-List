@@ -1,4 +1,4 @@
-import com.android.build.gradle.LibraryExtension
+import com.android.build.api.dsl.LibraryExtension
 import com.toolkit.plugs.EnvironmentSetup
 import com.toolkit.plugs.configureKotlinAndroid
 import com.toolkit.plugs.setupBaseLibs
@@ -15,14 +15,12 @@ class ModulePlugin : Plugin<Project> {
             apply("kotlin-parcelize")
             apply("org.jetbrains.kotlin.plugin.serialization")
             apply("com.google.devtools.ksp")
-            apply("org.jetbrains.kotlin.android")
             apply("org.jetbrains.kotlin.plugin.compose")
         }
 
         extensions.configure<LibraryExtension> {
             configureKotlinAndroid(this)
             defaultConfig.apply {
-                targetSdk = EnvironmentSetup.TARGET_SDK
                 vectorDrawables {
                     useSupportLibrary = true
                 }
