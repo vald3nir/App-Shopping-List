@@ -16,7 +16,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:screenOrientation="portrait"
         android:supportsRtl="true"
-        android:theme="@style/Theme.ShoppingList">
+        android:theme="@style/Theme.MyApp">
 
         <provider
             android:name="androidx.startup.InitializationProvider"

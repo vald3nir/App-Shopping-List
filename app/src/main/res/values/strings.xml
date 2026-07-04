@@ -27,7 +27,7 @@
 
     <!-- ============ LIST DETAILS FEATURE ============ -->
     <string name="list_details_add_to_shopping_cart">Colocar no carrinho</string>
-    <string name="list_details_remove_from_shopping_cart">Remover do carrinho</string>
+    <string name="list_details_remove_from_shopping_cart">Tirar do carrinho</string>
     <string name="list_details_empty_state_message">Sem itens cadastrados</string>
     <string name="list_details_cart_on_size">Itens no carrinho:</string>
     <string name="list_details_cart_off_size">Itens fora do carrinho:</string>

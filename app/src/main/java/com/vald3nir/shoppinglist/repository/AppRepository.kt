@@ -4,7 +4,7 @@ import com.vald3nir.shoppinglist.domain.dto.ItemShoppingListDTO
 import com.vald3nir.shoppinglist.domain.dto.ShoppingListDTO
 import kotlinx.coroutines.flow.Flow
 
-interface AppRepository {
+internal interface AppRepository {
 
     // Sync
     suspend fun downloadProducts()

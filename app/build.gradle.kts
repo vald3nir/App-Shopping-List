@@ -11,7 +11,6 @@ plugins {
     alias(libs.plugins.baselineprofile)
     alias(libs.plugins.gms)
     alias(libs.plugins.toolkit.firebase)
-    alias(libs.plugins.toolkit.supabase) // todo valdenir remover dependencia
     alias(libs.plugins.firebase.crashlytics)
     alias(libs.plugins.google.firebase.appdistribution)
 }
@@ -22,14 +21,12 @@ android {
     namespace = "com.vald3nir.shoppinglist"
     defaultConfig {
         applicationId = namespace
-        versionCode = 13
-        versionName = "2026.5.0"
+        versionCode = 14
+        versionName = "2026.5.1"
         buildConfigField("String", "APP_PRIVACY_POLICY_URL", parameters.appPrivacyPolicyURL)
         buildConfigField("String", "APP_TERMS_USE_URL", parameters.termsUseURL)
         buildConfigField("String", "WEB_GOOGLE_CLIENT_ID", parameters.webGoogleClientID)
-        buildConfigField("int", "DB_VERSION", 1.toString())
-        buildConfigField("String", "SUPABASE_URL", parameters.supabaseUrl)
-        buildConfigField("String", "SUPABASE_KEY", parameters.supabaseKey)
+        buildConfigField("int", "DB_VERSION", versionCode.toString())
     }
     setupSigningConfigs(parameters = parameters)
     buildTypes.configureEach {
