@@ -44,7 +44,7 @@ internal class DeleteListUseCase @Inject constructor(
         analyticsHelper.onLog("delete list with listId: $listId")
         if (listId == null) throw ParameterInvalidException()
         shoppingListDao.fakeDeleteList(listId)
-        itemShoppingListDao.fakeDeleteItemsByList(listId)
+        itemShoppingListDao.deleteItemsByList(listId)
     }
 
     suspend fun execute() {

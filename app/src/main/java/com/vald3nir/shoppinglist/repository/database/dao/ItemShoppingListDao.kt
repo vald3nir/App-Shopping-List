@@ -95,15 +95,11 @@ internal interface ItemShoppingListDao {
     @Query("DELETE FROM item_shopping_list WHERE id = :itemId")
     suspend fun deleteItem(itemId: String)
 
-    @Query("UPDATE item_shopping_list SET markDeleted = 1 WHERE id = :itemId")
-    suspend fun fakeDeleteItem(itemId: String)
 
-    @Query("UPDATE item_shopping_list SET markDeleted = 1 WHERE shoppingListId = :listId")
-    suspend fun fakeDeleteItemsByList(listId: String)
+    @Query("DELETE FROM item_shopping_list WHERE shoppingListId = :listId")
+    suspend fun deleteItemsByList(listId: String)
 
     @Query("DELETE FROM item_shopping_list")
     suspend fun deleteAll()
 
-    @Query("DELETE FROM item_shopping_list WHERE markDeleted = 1")
-    suspend fun deleteAllFakes()
 }

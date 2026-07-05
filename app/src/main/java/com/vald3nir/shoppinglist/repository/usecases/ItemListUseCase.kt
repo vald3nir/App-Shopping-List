@@ -69,6 +69,6 @@ internal class DeleteItemListUseCase @Inject constructor(
     suspend fun execute(itemId: String?) {
         analyticsHelper.onLog("delete item with id: $itemId")
         if (itemId == null) throw ParameterInvalidException()
-        itemShoppingListDao.fakeDeleteItem(itemId)
+        itemShoppingListDao.deleteItem(itemId)
     }
 }

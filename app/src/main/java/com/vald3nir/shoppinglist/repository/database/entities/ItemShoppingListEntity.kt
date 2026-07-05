@@ -26,5 +26,4 @@ internal data class ItemShoppingListEntity(
     val quantity: Int = 1,
     val unitPrice: Double = 0.0,
     val onCart: Boolean = false, // Flag to indicate if the item is added to the shopping list
-    val markDeleted: Boolean = false, // Flag to indicate if the item has been deleted
 )

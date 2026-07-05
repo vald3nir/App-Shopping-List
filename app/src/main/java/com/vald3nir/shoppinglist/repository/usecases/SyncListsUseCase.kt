@@ -4,7 +4,6 @@ import com.vald3nir.shoppinglist.domain.dto.ShoppingListDTO
 import com.vald3nir.shoppinglist.domain.mapper.toDTO
 import com.vald3nir.shoppinglist.domain.mapper.toEntity
 import com.vald3nir.shoppinglist.repository.api.FirebaseDataSource
-import com.vald3nir.shoppinglist.repository.database.dao.ItemShoppingListDao
 import com.vald3nir.shoppinglist.repository.database.dao.ShoppingListDao
 import com.vald3nir.shoppinglist.repository.database.dao.UserDao
 import com.vald3nir.shoppinglist.repository.database.entities.ItemShoppingListEntity
@@ -17,7 +16,6 @@ internal class SyncListsUseCase @Inject constructor(
     private val analyticsHelper: AnalyticsHelper,
     private val userDao: UserDao,
     private val shoppingListDao: ShoppingListDao,
-    private val itemShoppingListDao: ItemShoppingListDao,
     private val firebaseDataSource: FirebaseDataSource,
 ) {
     suspend fun execute() {
@@ -38,8 +36,6 @@ internal class SyncListsUseCase @Inject constructor(
 
         shoppingListDao.insertShoppingLists(mergedLists)
         shoppingListDao.insertItems(mergedItems)
-
-        itemShoppingListDao.deleteAllFakes()
         shoppingListDao.deleteAllFakes()
 
         firebaseDataSource.uploadLists(owner, shoppingListDao.selectAllListsWithItems().toDTO())
@@ -48,7 +44,6 @@ internal class SyncListsUseCase @Inject constructor(
     private fun mergeShoppingLists(local: List<ShoppingListEntity>, cloud: List<ShoppingListEntity>): List<ShoppingListEntity> = (local + cloud).distinctBy { it.id }
 
     private fun mergeItemsShoppingLists(local: List<ItemShoppingListEntity>, cloud: List<ItemShoppingListEntity>): List<ItemShoppingListEntity> = (local + cloud).distinctBy { it.id }
-
 
     private fun List<ShoppingListDTO>.splitToEntity(): Pair<List<ShoppingListEntity>, List<ItemShoppingListEntity>> {
         val shoppingListsEntities = this.map { it.toEntity() }
