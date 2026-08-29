@@ -24,10 +24,9 @@ import androidx.compose.ui.unit.dp
 import com.vald3nir.shoppinglist.R
 import com.vald3nir.shoppinglist.domain.dto.ItemShoppingListDTO
 import com.vald3nir.shoppinglist.domain.providers.ItemsShoppingListProvider
-import com.vald3nir.toolkit.designsystem.components.DefaultSpaceWidth
-import com.vald3nir.toolkit.designsystem.components.HalfSpaceWidth
+import com.vald3nir.toolkit.designsystem.components.ToolkitSpaceWidth
 import com.vald3nir.toolkit.designsystem.components.ToolkitSpacingMd
-import com.vald3nir.toolkit.designsystem.components.defaultSpace
+import com.vald3nir.toolkit.designsystem.components.ToolkitSpacingXs
 import com.vald3nir.toolkit.designsystem.components.dividers.ToolkitDivider
 import com.vald3nir.toolkit.designsystem.components.icons.ToolkitIcon
 import com.vald3nir.toolkit.designsystem.components.icons.ToolkitIconCatalog
@@ -48,16 +47,16 @@ internal fun CreateItemListRow(
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(vertical = defaultSpace),
+                .padding(vertical = ToolkitSpacingMd),
             verticalAlignment = Alignment.CenterVertically
         ) {
-            HalfSpaceWidth()
+            ToolkitSpaceWidth(ToolkitSpacingXs)
             Image(
                 modifier = Modifier.size(28.dp),
                 painter = painterResource(id = R.drawable.ic_groceries),
                 contentDescription = null
             )
-            DefaultSpaceWidth()
+            ToolkitSpaceWidth()
             ToolkitText(modifier = Modifier.weight(1f), text = item.product.orEmpty(), style = ToolkitTextStyle.TitleMedium)
             ToolkitIcon(
                 modifier = Modifier.size(28.dp),
