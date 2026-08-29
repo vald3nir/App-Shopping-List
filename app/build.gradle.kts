@@ -21,8 +21,8 @@ android {
     namespace = "com.vald3nir.shoppinglist"
     defaultConfig {
         applicationId = namespace
-        versionCode = 15
-        versionName = "2026.5.2"
+        versionCode = 16
+        versionName = "2026.5.3"
         buildConfigField("String", "APP_PRIVACY_POLICY_URL", parameters.appPrivacyPolicyURL)
         buildConfigField("String", "APP_TERMS_USE_URL", parameters.termsUseURL)
         buildConfigField("String", "WEB_GOOGLE_CLIENT_ID", parameters.webGoogleClientID)

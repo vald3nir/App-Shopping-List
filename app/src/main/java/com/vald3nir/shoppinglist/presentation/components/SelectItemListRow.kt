@@ -21,10 +21,10 @@ import androidx.compose.ui.unit.dp
 import com.vald3nir.shoppinglist.domain.dto.ItemShoppingListDTO
 import com.vald3nir.shoppinglist.domain.providers.ItemsShoppingListProvider
 import com.vald3nir.toolkit.core.utils.extensions.toMoney
-import com.vald3nir.toolkit.designsystem.components.DefaultSpaceWidth
-import com.vald3nir.toolkit.designsystem.components.HalfSpaceWidth
+import com.vald3nir.toolkit.designsystem.components.ToolkitSpaceWidth
+import com.vald3nir.toolkit.designsystem.components.ToolkitSpacingMd
+import com.vald3nir.toolkit.designsystem.components.ToolkitSpacingXs
 import com.vald3nir.toolkit.designsystem.components.buttons.ToolkitDeleteButton
-import com.vald3nir.toolkit.designsystem.components.defaultSpace
 import com.vald3nir.toolkit.designsystem.components.dividers.ToolkitDivider
 import com.vald3nir.toolkit.designsystem.components.selectors.ToolkitCheckBox
 import com.vald3nir.toolkit.designsystem.components.texts.ToolkitText
@@ -45,15 +45,15 @@ internal fun SelectItemListRow(
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(vertical = defaultSpace),
+                .padding(vertical = ToolkitSpacingMd),
             verticalAlignment = Alignment.CenterVertically
         ) {
-            HalfSpaceWidth()
+            ToolkitSpaceWidth(ToolkitSpacingXs)
             ToolkitCheckBox(
                 checked = item.onCart,
                 onCheckedChange = { onChangeItemStatus(item.id) },
             )
-            DefaultSpaceWidth()
+            ToolkitSpaceWidth()
             Column(modifier = Modifier.weight(1f)) {
                 ToolkitText(text = "${item.product.orEmpty()} - ${item.quantity} Uni.", style = ToolkitTextStyle.TitleMedium)
                 if (item.unitPrice > 0) {
@@ -85,7 +85,7 @@ private fun Preview(@PreviewParameter(ItemsShoppingListProvider::class) items: L
                 SelectItemListRow(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(horizontal = defaultSpace),
+                        .padding(horizontal = ToolkitSpacingMd),
                     item = item,
                     showDivider = index != items.lastIndex
                 )
