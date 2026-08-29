@@ -55,7 +55,7 @@ internal fun HomeScreen(
             return
         }
 
-        is BaseUiState.EmptySate -> {
+        is BaseUiState.EmptyState -> {
             EmptyState(
                 userImageUrl = homeData?.user?.photoUrl,
                 onClickAddData = redirectToCreateList,

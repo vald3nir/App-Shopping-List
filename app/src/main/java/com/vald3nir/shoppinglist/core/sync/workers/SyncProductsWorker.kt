@@ -22,7 +22,7 @@ internal class SyncProductsWorker @AssistedInject constructor(
     private val repository: AppRepository,
     @Dispatcher(JobScope.IO) private val ioDispatcher: CoroutineDispatcher,
 ) : BaseSyncWorker(
-    appName = appContext.getString(R.string.app_name),
+    notificationTitle = appContext.getString(R.string.app_name),
     appContext = appContext,
     workerParams = workerParams,
     ioDispatcher = ioDispatcher
