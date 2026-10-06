@@ -43,7 +43,7 @@ internal class CreateListViewModel @Inject constructor(
             notifyState(BaseUiState.LoadingState(true))
         }.onEach {
             if (it.items.isEmpty()) {
-                notifyState(BaseUiState.EmptySate)
+                notifyState(BaseUiState.EmptyState)
             } else {
                 notifyState(BaseUiState.ShowState())
             }

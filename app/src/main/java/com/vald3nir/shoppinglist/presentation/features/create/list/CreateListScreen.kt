@@ -50,7 +50,7 @@ internal fun CreateListScreen(
         return
     }
 
-    if (uiState is BaseUiState.EmptySate) {
+    if (uiState is BaseUiState.EmptyState) {
         EmptyState(
             onClickAddData = { onClickAddData(createListData.listId) },
             onBackPressed = viewModel::navigateBack

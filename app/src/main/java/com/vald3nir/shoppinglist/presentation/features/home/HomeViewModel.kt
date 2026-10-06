@@ -46,7 +46,7 @@ internal class HomeViewModel @Inject constructor(
             notifyState(BaseUiState.LoadingState(true))
         }.onEach {
             if (it.lists.isNullOrEmpty()) {
-                notifyState(BaseUiState.EmptySate)
+                notifyState(BaseUiState.EmptyState)
             } else {
                 notifyState(BaseUiState.ShowState())
             }
